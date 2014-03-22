@@ -70,7 +70,7 @@
                 </div>
 
                 <div id="site_title">
-                    <a href="index.php" target="_parent">Algoritmica</a>
+                    <?=CHtml::link("Algoritmica", array(Yii::app()->defaultController.'/index'))?>
                 </div>
 
                 <div id="search_box">
