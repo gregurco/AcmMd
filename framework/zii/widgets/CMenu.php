@@ -245,7 +245,7 @@ class CMenu extends CWidget
 		if(isset($item['url']))
 		{
 			$label=$this->linkLabelWrapper===null ? $item['label'] : CHtml::tag($this->linkLabelWrapper, $this->linkLabelWrapperHtmlOptions, $item['label']);
-			return CHtml::link($label,$item['url'],isset($item['linkOptions']) ? $item['linkOptions'] : array());
+			return CHtml::link('<span></span>'.$label,$item['url'],isset($item['linkOptions']) ? $item['linkOptions'] : array());
 		}
 		else
 			return CHtml::tag('span',isset($item['linkOptions']) ? $item['linkOptions'] : array(), $item['label']);
