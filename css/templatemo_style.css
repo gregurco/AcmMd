@@ -180,7 +180,7 @@ a.continue { color: #F00; font-weight: bold; text-decoration: none; }
 	background: url(../images/templatemo_menu_right.jpg) no-repeat top right;
 }
 
-#templatemo_menu ul li .active a {
+#templatemo_menu ul .active a{
     color: #000;
 }
 

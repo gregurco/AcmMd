@@ -64,3 +64,45 @@ REQUEST_URI=/index.php/site/index
 in /var/www/agenda-yii/protected/views/layouts/main.php (101)
 in /var/www/agenda-yii/protected/views/layouts/column1.php (6)
 in /var/www/agenda-yii/protected/controllers/SiteController.php (32)
+2014/03/22 19:57:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "index.php".' in /var/www/agenda-yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/agenda-yii/framework/web/CController.php(270): CController->missingAction('index.php')
+#1 /var/www/agenda-yii/framework/web/CWebApplication.php(282): CController->run('index.php')
+#2 /var/www/agenda-yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/index.php')
+#3 /var/www/agenda-yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/agenda-yii/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/site/index.php
+HTTP_REFERER=http://95.65.77.178:81/index.php/site/contact
+---
+2014/03/22 19:59:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "favicon.ico".' in /var/www/agenda-yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/agenda-yii/framework/web/CController.php(270): CController->missingAction('favicon.ico')
+#1 /var/www/agenda-yii/framework/web/CWebApplication.php(282): CController->run('favicon.ico')
+#2 /var/www/agenda-yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/favicon.ic...')
+#3 /var/www/agenda-yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/agenda-yii/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=//site/favicon.ico
+---
+2014/03/22 19:59:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "favicon.ico".' in /var/www/agenda-yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/agenda-yii/framework/web/CController.php(270): CController->missingAction('favicon.ico')
+#1 /var/www/agenda-yii/framework/web/CWebApplication.php(282): CController->run('favicon.ico')
+#2 /var/www/agenda-yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/favicon.ic...')
+#3 /var/www/agenda-yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/agenda-yii/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/favicon.ico
+---
+2014/03/22 19:59:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "index.php".' in /var/www/agenda-yii/framework/web/CController.php:483
+Stack trace:
+#0 /var/www/agenda-yii/framework/web/CController.php(270): CController->missingAction('index.php')
+#1 /var/www/agenda-yii/framework/web/CWebApplication.php(282): CController->run('index.php')
+#2 /var/www/agenda-yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/index.php')
+#3 /var/www/agenda-yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /var/www/agenda-yii/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/site/index.php
+HTTP_REFERER=http://95.65.77.178:81/site/index
+---
