@@ -70,7 +70,7 @@
                 </div>
 
                 <div id="site_title">
-                    <?=CHtml::link("Algoritmica", array(Yii::app()->defaultController.'/index'))?>
+                    <?=CHtml::link("Algoritmica", array('/'.Yii::app()->defaultController.'/index'))?>
                 </div>
 
                 <div id="search_box">
@@ -90,11 +90,10 @@
             <div id="templatemo_menu">
                 <?php $this->widget('zii.widgets.CMenu',array(
                     'items'=>array(
-                        array('label'=>'Home', 'url'=>array('/site/index')),
-                        array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-                        array('label'=>'Contact', 'url'=>array('/site/contact')),
-                        array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-                        array('label'=>'Admin Center', 'url'=>array('/admin'), 'visible'=>Yii::app()->user->userIsAdmin()),
+                        array('label'=>'Новости', 'url'=>array('')),
+                        array('label'=>'Пользователи', 'url'=>array('')),
+                        array('label'=>'Задачи', 'url'=>array('')),
+                        array('label'=>'Настройки', 'url'=>array('')),
                         array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
                     ),
                     'activateParents'=>true,
