@@ -105,7 +105,7 @@
                 <table style="width: 100%;">
                     <tr>
                         <p style="color: GREEN;">language: <?=Yii::app()->session['language']?></p>
-                        
+
                         <td style="width: 70%;" valign=top>
                             <?php echo $content; ?>
                         </td>
