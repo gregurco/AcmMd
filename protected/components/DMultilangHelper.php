@@ -33,6 +33,11 @@ class DMultilangHelper
     {
         if (self::enabled())
         {
+
+            if (!isset(Yii::app()->session['language'])){
+                self::selectLanguage(Yii::app()->params['defaultLanguage']);
+            }
+
             $domains = explode('/', ltrim($url, '/'));
 
             $isLangExists = in_array($domains[0], array_keys(Yii::app()->params['translatedLanguages']));
@@ -43,9 +48,7 @@ class DMultilangHelper
                 $lang = array_shift($domains);
                 Yii::app()->setLanguage($lang);
 
-                Yii::app()->session['language'] = $lang;
-                if (isset(Yii::app()->session['language']))
-                    Yii::app()->language = Yii::app()->session['language'];
+                $this->selectLanguage($lang);
 
                 $url = '/' . implode('/', $domains);
                 CController::redirect($url);
@@ -55,6 +58,12 @@ class DMultilangHelper
         }
 
         return $url;
+    }
+
+    public function selectLanguage($lang){
+        Yii::app()->session['language'] = $lang;
+        if (isset(Yii::app()->session['language']))
+            Yii::app()->language = Yii::app()->session['language'];
     }
     /*
     public static function addLangToUrl($url)

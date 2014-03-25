@@ -12,4 +12,11 @@ class WebUser extends CWebUser{
         return $this->_model;
     }
 
+    public function userIsAdmin(){
+        if (!Yii::app()->user->isGuest && $this->loadUser()->admin){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
