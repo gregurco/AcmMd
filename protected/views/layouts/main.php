@@ -66,7 +66,7 @@
         <div id="templatemo_wrapper">
             <div id="templatemo_header">
                 <div style="position: absolute; ">
-
+                    <? $this->widget('LanguageSwitcherWidget');?>
                 </div>
 
                 <div id="site_title">
@@ -104,6 +104,8 @@
             <div id="templatemo_main">
                 <table style="width: 100%;">
                     <tr>
+                        <p style="color: GREEN;">language: <?=Yii::app()->session['language']?></p>
+                        
                         <td style="width: 70%;" valign=top>
                             <?php echo $content; ?>
                         </td>

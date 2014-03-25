@@ -31,6 +31,9 @@ return array(
 
 	// application components
 	'components'=>array(
+        'request'=>array(
+            'class'=>'DLanguageHttpRequest',
+        ),
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
@@ -39,9 +42,11 @@ return array(
 		'urlManager'=>array(
 			'urlFormat'=>'path',
 			'rules'=>array(
-				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
-				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
-				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+                '<language:(ru|ro)>/' => 'site/index',
+                '<language:(ru|ro)>/<action:(contact|login|logout)>' => 'site/<action>',
+                '<language:(ru|ro)>/<controller:\w+>/<id:\d+>'=>'<controller>/view',
+                '<language:(ru|ro)>/<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+                '<language:(ru|ro)>/<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
             'showScriptName' => false,
 		),
@@ -86,5 +91,10 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
+        'translatedLanguages'=>array(
+            'ru'=>'Russian',
+            'ro'=>'Romanian',
+        ),
+        'defaultLanguage'=>'ru',
 	),
 );
