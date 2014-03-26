@@ -90,6 +90,7 @@
             <div id="templatemo_menu">
                 <?php $this->widget('zii.widgets.CMenu',array(
                     'items'=>array(
+                        array('label'=>'Стартовая', 'url'=>array('/'.Yii::app()->defaultController.'/index')),
                         array('label'=>'Новости', 'url'=>array('')),
                         array('label'=>'Пользователи', 'url'=>array('')),
                         array('label'=>'Задачи', 'url'=>array('')),

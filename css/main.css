@@ -227,3 +227,17 @@ div.search-form
 {
 	background: #80CFFF;
 }
+
+#content {
+    clear: both;
+    *filter: none;
+    *border-left: 1px solid #CCC;
+    *border-right: 1px solid #CCC;
+    *border-bottom: 1px solid #CCC;
+    /*
+    -moz-box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
+    */
+    position: relative;
+}

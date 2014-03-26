@@ -4,6 +4,11 @@
 $this->breadcrumbs=array(
 	$this->module->id,
 );
+
+$this->menu=array(
+    array('label'=>'Create User', 'url'=>array('create')),
+    array('label'=>'Manage User', 'url'=>array('admin')),
+);
 ?>
 <h1><?php echo $this->uniqueId . '/' . $this->action->id; ?></h1>
 

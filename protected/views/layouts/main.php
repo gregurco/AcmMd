@@ -90,12 +90,15 @@
             <div id="templatemo_menu">
                 <?php $this->widget('zii.widgets.CMenu',array(
                     'items'=>array(
-                        array('label'=>'Home', 'url'=>array('/site/index')),
-                        array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-                        array('label'=>'Contact', 'url'=>array('/site/contact')),
-                        array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+                        array('label'=>'Новости', 'url'=>array('/site/index')),
+                        array('label'=>'Задачи', 'url'=>array('')),
+                        array('label'=>'Олимпиады', 'url'=>array('')),
+                        array('label'=>'Статьи', 'url'=>array('')),
+                        array('label'=>'Рейтинг', 'url'=>array('')),
                         array('label'=>'Admin Center', 'url'=>array('/admin'), 'visible'=>Yii::app()->user->userIsAdmin()),
-                        array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
+                        array('label'=>'Войти', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+                        array('label'=>'Регистрация', 'url'=>array('/site/register'), 'visible'=>Yii::app()->user->isGuest),
+                        array('label'=>'Выйти ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
                     ),
                     'activateParents'=>true,
                     //'itemTemplate' => '{menu}',
