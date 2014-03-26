@@ -48,7 +48,7 @@ class DMultilangHelper
                 $lang = array_shift($domains);
                 Yii::app()->setLanguage($lang);
 
-                $this->selectLanguage($lang);
+                self::selectLanguage($lang);
 
                 $url = '/' . implode('/', $domains);
                 CController::redirect($url);
