@@ -90,7 +90,7 @@
             <div id="templatemo_menu">
                 <?php $this->widget('zii.widgets.CMenu',array(
                     'items'=>array(
-                        array('label'=>'Новости', 'url'=>array('/site/index')),
+                        array('label'=>'Новости', 'url'=>array('/news')),
                         array('label'=>'Задачи', 'url'=>array('')),
                         array('label'=>'Олимпиады', 'url'=>array('')),
                         array('label'=>'Статьи', 'url'=>array('')),
