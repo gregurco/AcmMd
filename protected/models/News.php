@@ -30,7 +30,6 @@ class News extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('create', 'required'),
 			array('create, hide', 'numerical', 'integerOnly'=>true),
 			array('title_ru, title_ro', 'length', 'max'=>255),
 			array('text_ru, text_ro', 'safe'),
@@ -141,10 +140,10 @@ class News extends CActiveRecord
         }
     }
 
-    protected function beforeSafe($model)
+    protected function beforeSave()
     {
-        if($model->isNewRecord)
-            $model->create = time();
-        return parent::beforeSafe($model);
+        if($this->isNewRecord)
+            $this->create = time();
+        return parent::beforeSave();
     }
 }

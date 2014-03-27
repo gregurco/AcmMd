@@ -91,7 +91,7 @@
                 <?php $this->widget('zii.widgets.CMenu',array(
                     'items'=>array(
                         array('label'=>'Стартовая', 'url'=>array('/'.Yii::app()->defaultController.'/index')),
-                        array('label'=>'Новости', 'url'=>array('')),
+                        array('label'=>'Новости', 'url'=>array('news/')),
                         array('label'=>'Пользователи', 'url'=>array('user/')),
                         array('label'=>'Задачи', 'url'=>array('')),
                         array('label'=>'Настройки', 'url'=>array('')),
