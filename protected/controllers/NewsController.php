@@ -48,10 +48,13 @@ class NewsController extends Controller
 		));
 	}
 
-	public function actionIndex()
-	{
-
+    public function actionIndex()
+    {
         $dataProvider=new CActiveDataProvider('News', array(
+            'criteria'=>array(
+                'condition'=>'`hide`=0',
+                'order'=>'`create` DESC',
+            ),
             'pagination' => array(
                 'pageSize' => 10,
             )
@@ -59,7 +62,7 @@ class NewsController extends Controller
         $this->render('index',array(
             'dataProvider'=>$dataProvider,
         ));
-	}
+    }
 
 	/**
 	 * Manages all models.

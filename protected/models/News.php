@@ -140,4 +140,11 @@ class News extends CActiveRecord
             else return $model->text_ru;
         }
     }
+
+    protected function beforeSafe($model)
+    {
+        if($model->isNewRecord)
+            $model->create = time();
+        return parent::beforeSafe($model);
+    }
 }

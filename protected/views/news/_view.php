@@ -10,7 +10,7 @@
 
     <div style="margin-bottom: 10px; font-size: 11px; color: #666;">
         <?php echo CHtml::encode('Создан'); ?>:
-        <?php echo CHtml::encode($data->create); ?>
+        <?php echo CHtml::encode(date("j.m.Y",$data->create)); ?>
     </div>
 
     <div>
