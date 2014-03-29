@@ -20,6 +20,8 @@
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css" media="screen, projection" />
     <![endif]-->
 
+    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/menu.css" />
+
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
 
@@ -87,7 +89,7 @@
                 <div class="cleaner"></div>
             </div>
 
-            <div id="templatemo_menu">
+            <div style="text-align: -webkit-center;">
                 <?php $this->widget('zii.widgets.CMenu',array(
                     'items'=>array(
                         array('label'=>'Новости', 'url'=>array('/news')),
@@ -101,6 +103,7 @@
                         array('label'=>'Выйти ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
                     ),
                     'activateParents'=>true,
+                    'id' => 'menu',
                     //'itemTemplate' => '{menu}',
                 )); ?>
             </div>
