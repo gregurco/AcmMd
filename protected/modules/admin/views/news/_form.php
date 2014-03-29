@@ -33,13 +33,23 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'Текст_рус'); ?>
-		<?php echo $form->textArea($model,'text_ru',array('rows'=>6, 'cols'=>50)); ?>
+        <?php $this->widget('application.extensions.ckeditor.CKEditor', array(
+            'model'=>$model,
+            'attribute'=>'text_ru',
+            'language'=>'ru',
+            'editorTemplate'=>'full',
+        )); ?>
 		<?php echo $form->error($model,'text_ru'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'Текст_рум'); ?>
-		<?php echo $form->textArea($model,'text_ro',array('rows'=>6, 'cols'=>50)); ?>
+        <?php $this->widget('application.extensions.ckeditor.CKEditor', array(
+            'model'=>$model,
+            'attribute'=>'text_ro',
+            'language'=>'ro',
+            'editorTemplate'=>'full',
+        )); ?>
 		<?php echo $form->error($model,'text_ro'); ?>
 	</div>
 

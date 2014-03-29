@@ -15,7 +15,7 @@
 
     <div>
         <p align="justify">
-            <?php echo CHtml::encode($data->getText($data)); ?>
+            <?php echo $data->getText($data); ?>
         </p>
     </div>
 </div>

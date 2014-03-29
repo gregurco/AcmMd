@@ -104,7 +104,6 @@
                     ),
                     'activateParents'=>true,
                     'id' => 'menu',
-                    //'itemTemplate' => '{menu}',
                 )); ?>
             </div>
 
