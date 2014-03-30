@@ -27,7 +27,7 @@ class UserController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','delete','create','update'),
+				'actions'=>array('index','view','delete','create','update', 'ChangePassword'),
 				'users'=>array('*'),
 			),
 			array('deny',  // deny all users
@@ -122,6 +122,26 @@ class UserController extends Controller
 			'model'=>$model,
 		));
 	}
+
+    public function actionChangePassword($id){
+        $model=$this->loadModel($id);
+        // Uncomment the following line if AJAX validation is needed
+        // $this->performAjaxValidation($model);
+
+        if(isset($_POST['User']))
+        {
+            $model->attributes=$_POST['User'];
+            $model->password = md5($model->password);
+            if($model->save())
+                $this->redirect(array('index'));
+        }
+
+        $model->password = '';
+
+        $this->render('changePassword',array(
+            'model'=>$model,
+        ));
+    }
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.

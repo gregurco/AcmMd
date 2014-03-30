@@ -63,6 +63,11 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
                 'style' => 'text-align: center;',
             ),
         ),
+        array(
+            'type'=>'html',
+            'value' => 'CHtml::link("Изменить", array("changePassword", "id" => $data->id))',
+            'header' => 'Пароль',
+        ),
 		array(
 			'class'=>'CButtonColumn',
 		),
