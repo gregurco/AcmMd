@@ -95,7 +95,7 @@
                         array('label'=>'Стартовая', 'url'=>array('/'.Yii::app()->defaultController.'/index')),
                         array('label'=>'Новости', 'url'=>array('news/')),
                         array('label'=>'Пользователи', 'url'=>array('user/')),
-                        array('label'=>'Задачи', 'url'=>array('')),
+                        array('label'=>'Задачи', 'url'=>array('problem/')),
                         array('label'=>'Настройки', 'url'=>array('')),
                         array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
                     ),

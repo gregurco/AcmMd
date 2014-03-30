@@ -9,3 +9,12 @@ function Genelate_password(){
     for (var i = 0, n = charset.length; i < length; ++i)
         $("#User_password").val($("#User_password").val() + charset.charAt(Math.floor(Math.random() * n)));
 }
+
+function addTableRow(jQtable){
+    $('#example tr').each(function(row, e) {
+        if ($(this).css('display') == 'none'){
+            $(this).css({'display' : 'table-row'});
+            exit;
+        }
+    });
+}

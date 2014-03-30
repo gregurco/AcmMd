@@ -423,3 +423,12 @@ a.continue { color: #F00; font-weight: bold; text-decoration: none; }
 	padding: 5px 5px 5px 5px;
 	margin: 5px 5px 5px 5px;
 }
+
+#example{
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+#example td, th{
+    border: 1px solid black;
+}
