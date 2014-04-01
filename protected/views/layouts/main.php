@@ -20,14 +20,6 @@
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css" media="screen, projection" />
     <![endif]-->
 
-    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/menu.css" />
-
-    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
-    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
-
-    <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/templatemo_style.css" rel="stylesheet" type="text/css" />
-    <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.min.js" type="text/javascript"></script>
-
     <script>var now = new Date(<?=date("Y, n-1, j, H ,i, s")?>);</script>
     <script language="javascript" type="text/javascript">
         function clearText(field){
@@ -93,7 +85,7 @@
                 <?php $this->widget('zii.widgets.CMenu',array(
                     'items'=>array(
                         array('label'=>'Новости', 'url'=>array('/news')),
-                        array('label'=>'Задачи', 'url'=>array('')),
+                        array('label'=>'Задачи', 'url'=>array('/problem')),
                         array('label'=>'Олимпиады', 'url'=>array('')),
                         array('label'=>'Статьи', 'url'=>array('')),
                         array('label'=>'Рейтинг', 'url'=>array('')),

@@ -155,8 +155,8 @@
     <? endif; ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'hide'); ?>
-		<?php echo $form->textField($model,'hide'); ?>
+		<?php echo $form->labelEx($model,'Скрыто'); ?>
+		<?php echo $form->dropDownList($model,'hide', array(0 => 'Нет', 1 => 'Да')); ?>
 		<?php echo $form->error($model,'hide'); ?>
 	</div>
 

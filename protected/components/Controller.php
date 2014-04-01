@@ -23,6 +23,10 @@ class Controller extends CController
 
     public function init()
     {
+        Yii::app()->getClientScript()->registerCoreScript('jquery');
+        Yii::app()->getClientScript()->registerCoreScript('main_js');
+        Yii::app()->getClientScript()->registerCoreScript('main_css');
+
         if (empty($_GET['language']))
             $_GET['language'] = 'ru';
 
