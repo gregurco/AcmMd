@@ -7,22 +7,13 @@ $this->menu=array(
 );
 ?>
 
-<h1>View Problem #<?php echo $model->id; ?></h1>
+<h1 style="text-align: center;">"<?php echo $model->name; ?>"</h1>
 
-<?php $this->widget('zii.widgets.CDetailView', array(
-	'data'=>$model,
-	'attributes'=>array(
-		'id',
-		'name_ru',
-		'name_ro',
-		'description_ru',
-		'description_ro',
-		'input_ru',
-		'input_ro',
-		'output_ru',
-		'output_ro',
-		'tests',
-		'limit_time',
-		'limit_memory',
-	),
-)); ?>
+<h3><?=Yii::t('interface', 'Description')?>:</h3>
+<?php echo $model->description; ?>
+
+<h3><?=Yii::t('interface', 'InputDate')?>:</h3>
+<?php echo $model->input; ?>
+
+<h3><?=Yii::t('interface', 'OutputDate')?>:</h3>
+<?php echo $model->output; ?>

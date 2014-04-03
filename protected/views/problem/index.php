@@ -35,8 +35,8 @@ $('.search-form form').submit(function(){
 	'columns'=>array(
 		'id',
         array(
-            'name' => 'name_ru',
-            'value' => '$data->name_ru',
+            'name' => 'name_'.Yii::app()->session['language'],
+            'value' => '$data->name_'.Yii::app()->session['language'],
             'header' => 'Название'
         ),
         array(

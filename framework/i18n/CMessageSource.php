@@ -31,7 +31,7 @@ abstract class CMessageSource extends CApplicationComponent
 	 * Defaults to false, meaning translation is only performed when source and target languages are different.
 	 * @since 1.1.4
 	 */
-	public $forceTranslation=false;
+	public $forceTranslation=true;
 
 	private $_language;
 	private $_messages=array();

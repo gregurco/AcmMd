@@ -37,6 +37,8 @@ class Problem extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+            array('description, name, input, output', 'safe'),
+
 			array('hide', 'numerical', 'integerOnly'=>true),
 			array('limit_time, limit_memory', 'numerical'),
 			array('name_ru, name_ro', 'length', 'max'=>255),
@@ -66,17 +68,17 @@ class Problem extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name_ru' => 'Name Ru',
+			'name_ru' => 'Название',
 			'name_ro' => 'Name Ro',
-			'description_ru' => 'Description Ru',
+			'description_ru' => 'Описание',
 			'description_ro' => 'Description Ro',
-			'input_ru' => 'Input Ru',
+			'input_ru' => 'Входные данные',
 			'input_ro' => 'Input Ro',
-			'output_ru' => 'Output Ru',
+			'output_ru' => 'Выходные данные',
 			'output_ro' => 'Output Ro',
-			'tests' => 'Tests',
-			'limit_time' => 'Limit Time',
-			'limit_memory' => 'Limit Memory',
+			'tests' => 'Тесты',
+			'limit_time' => 'Ограничение по времени',
+			'limit_memory' => 'Ограничение по памяти',
 			'examples' => 'Examples',
 			'hide' => 'Hide',
 		);
@@ -97,12 +99,17 @@ class Problem extends CActiveRecord
 	public function search()
 	{
 		// @todo Please modify the following code to remove attributes that should not be searched.
-
+        echo $this->name_ru;
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('name_ru',$this->name_ru,true);
-		$criteria->compare('name_ro',$this->name_ro,true);
+
+		$criteria->compare('name_ru', $this->name_ru,true);
+        #$criteria->compare('name_ru', $this->name_ro,true, 'OR');
+
+        $criteria->compare('name_ro', $this->name_ro,true);
+        #$criteria->compare('name_ro', $this->name_ru,true, 'OR');
+
 		$criteria->compare('description_ru',$this->description_ru,true);
 		$criteria->compare('description_ro',$this->description_ro,true);
 		$criteria->compare('input_ru',$this->input_ru,true);
@@ -133,6 +140,55 @@ class Problem extends CActiveRecord
 
     protected function afterFind(){
         $this->examples = json_decode($this->examples, true);
+
         return parent::afterFind();
+    }
+
+    public function getName()
+    {
+        $attribute = 'name_' . Yii::app()->session['language'];
+        return $this->{$attribute};
+    }
+
+    public function setName($value)
+    {
+        $attribute = 'name_' . Yii::app()->session['language'];
+        $this->{$attribute} = $value;
+    }
+
+    public function getDescription()
+    {
+        $attribute = 'description_' . Yii::app()->session['language'];
+        return $this->{$attribute};
+    }
+
+    public function setDescription($value)
+    {
+        $attribute = 'description_' . Yii::app()->session['language'];
+        $this->{$attribute} = $value;
+    }
+
+    public function getInput()
+    {
+        $attribute = 'input_' . Yii::app()->session['language'];
+        return $this->{$attribute};
+    }
+
+    public function setInput($value)
+    {
+        $attribute = 'input_' . Yii::app()->session['language'];
+        $this->{$attribute} = $value;
+    }
+
+    public function getOutput()
+    {
+        $attribute = 'output_' . Yii::app()->session['language'];
+        return $this->{$attribute};
+    }
+
+    public function setOutput($value)
+    {
+        $attribute = 'output_' . Yii::app()->session['language'];
+        $this->{$attribute} = $value;
     }
 }

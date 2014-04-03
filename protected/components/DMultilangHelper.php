@@ -54,6 +54,9 @@ class DMultilangHelper
                 CController::redirect($url);
             }
 
+            Yii::app()->sourceLanguage = Yii::app()->session['language'];
+
+
             $url = '/' . implode('/', $domains);
         }
 
@@ -62,8 +65,9 @@ class DMultilangHelper
 
     public function selectLanguage($lang){
         Yii::app()->session['language'] = $lang;
-        if (isset(Yii::app()->session['language']))
+        if (isset(Yii::app()->session['language'])){
             Yii::app()->language = Yii::app()->session['language'];
+        }
     }
     /*
     public static function addLangToUrl($url)
