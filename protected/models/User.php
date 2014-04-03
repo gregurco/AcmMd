@@ -13,6 +13,7 @@
  */
 class User extends CActiveRecord
 {
+    public $verifyCode;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -57,11 +58,12 @@ class User extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'login' => 'Login',
-			'password' => 'Password',
-			'name' => 'Name',
-			'surname' => 'Surname',
+			'login' => 'Логин',
+			'password' => 'Пароль',
+			'name' => 'Имя',
+			'surname' => 'Фамилия',
 			'admin' => 'Admin',
+            'verifyCode' => 'Введите код с картинки'
 		);
 	}
 
@@ -109,6 +111,7 @@ class User extends CActiveRecord
     protected function beforeSave(){
         if ($this->isNewRecord){
             $this->password = md5($this->password);
+            $this->admin = 0;
         }
 
         return parent::BeforeSave();

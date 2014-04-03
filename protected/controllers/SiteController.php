@@ -21,14 +21,30 @@ class SiteController extends Controller
 		);
 	}
 
-	/**
-	 * This is the default 'index' action that is invoked
-	 * when an action is not explicitly requested by users.
-	 */
+    public function actionRegister()
+    {
+        $model=new User;
+        $model->scenario = 'register';
 
-	/**
-	 * This is the action to handle external exceptions.
-	 */
+        // Uncomment the following line if AJAX validation is needed
+        // $this->performAjaxValidation($model);
+
+        if(isset($_POST['User']))
+        {
+            $model->attributes=$_POST['User'];
+
+            if($model->save()){
+                Yii::app()->user->setFlash('register','Вы можете авторизоваться.');
+            }else{
+                Yii::app()->user->setFlash('register','Что то не так...');
+            }
+        }
+
+        $this->render('register',array(
+            'model'=>$model,
+        ));
+    }
+
 	public function actionError()
 	{
 		if($error=Yii::app()->errorHandler->error)
@@ -92,10 +108,6 @@ class SiteController extends Controller
 		$this->render('login',array('model'=>$model));
 	}
 
-    public function actionRegister(){
-
-        $this->render('register');
-    }
 
 	/**
 	 * Logs out the current user and redirect to homepage.
