@@ -432,3 +432,30 @@ a.continue { color: #F00; font-weight: bold; text-decoration: none; }
 #example td, th{
     border: 1px solid black;
 }
+
+table.problem_example{
+    border: 1px solid black;
+    width: 100%;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-spacing: 1px;
+}
+
+.problem_example td{
+    border: 1px solid black;
+    padding: 1px 1px 1px 1px;
+}
+
+.problem_example th{
+    font-weight:bold;
+    border: 1px solid black;
+    text-align: center;
+    background-color: #467CDA;
+    padding: 1px 1px 1px 1px;
+}
+
+.problem_example p{
+    margin: 0 0 0;
+}

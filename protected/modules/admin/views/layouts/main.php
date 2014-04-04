@@ -84,13 +84,13 @@
             <div style="text-align: -webkit-center;">
                 <?php $this->widget('zii.widgets.CMenu',array(
                     'items'=>array(
-                        array('label'=>'Стартовая', 'url'=>array('/'.Yii::app()->defaultController.'/index')),
-                        array('label'=>'Новости', 'url'=>array('news/')),
-                        array('label'=>'Пользователи', 'url'=>array('user/')),
-                        array('label'=>'Задачи', 'url'=>array('problem/')),
-                        array('label'=>'Настройки', 'url'=>array('')),
-                        array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/profile/logout'), 'visible'=>!Yii::app()->user->isGuest),
-                    ),
+                        array('label'=>Yii::t('menu', 'MainPage'), 'url'=>array('/'.Yii::app()->defaultController.'/index')),
+                        array('label'=>Yii::t('menu', 'News'), 'url'=>array('news/')),
+                        array('label'=>Yii::t('menu', 'Users'), 'url'=>array('user/')),
+                        array('label'=>Yii::t('menu', 'Problems'), 'url'=>array('problem/')),
+                        array('label'=>Yii::t('menu', 'Settings'), 'url'=>array('')),
+                        array('label'=>Yii::t('menu', 'Exit').' ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
+                   ),
                     'activateParents'=>true,
                     'id' => 'menu',
                 )); ?>
