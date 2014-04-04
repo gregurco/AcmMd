@@ -90,9 +90,9 @@
                         array('label'=>Yii::t('menu', 'Articles'), 'url'=>array('')),
                         array('label'=>Yii::t('menu', 'Rating'), 'url'=>array('')),
                         array('label'=>Yii::t('menu', 'AdminCenter'), 'url'=>array('/admin'), 'visible'=>Yii::app()->user->userIsAdmin()),
-                        array('label'=>Yii::t('menu', 'Enter'), 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-                        array('label'=>Yii::t('menu', 'Registration'), 'url'=>array('/site/register'), 'visible'=>Yii::app()->user->isGuest),
-                        array('label'=>Yii::t('menu', 'AdminCenter').' ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),                    ),
+                        array('label'=>Yii::t('menu', 'Enter'), 'url'=>array('/profile/login'), 'visible'=>Yii::app()->user->isGuest),
+                        array('label'=>Yii::t('menu', 'Registration'), 'url'=>array('/profile/register'), 'visible'=>Yii::app()->user->isGuest),
+                        array('label'=>Yii::t('menu', 'AdminCenter').' ('.Yii::app()->user->name.')', 'url'=>array('/profile/logout'), 'visible'=>!Yii::app()->user->isGuest),                    ),
                     'activateParents'=>true,
                     'id' => 'menu',
                 )); ?>
@@ -101,8 +101,6 @@
             <div id="templatemo_main">
                 <table style="width: 100%;">
                     <tr>
-                        <p style="color: GREEN;">language: <?=Yii::app()->session['language']?></p>
-
                         <td style="width: 70%;" valign=top>
                             <?php echo $content; ?>
                         </td>

@@ -89,7 +89,7 @@
                         array('label'=>Yii::t('menu', 'Users'), 'url'=>array('user/')),
                         array('label'=>Yii::t('menu', 'Problems'), 'url'=>array('problem/')),
                         array('label'=>Yii::t('menu', 'Settings'), 'url'=>array('')),
-                        array('label'=>Yii::t('menu', 'Exit').' ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
+                        array('label'=>Yii::t('menu', 'Exit').' ('.Yii::app()->user->name.')', 'url'=>array('/profile/logout'), 'visible'=>!Yii::app()->user->isGuest),
                    ),
                     'activateParents'=>true,
                     'id' => 'menu',
@@ -99,8 +99,6 @@
             <div id="templatemo_main">
                 <table style="width: 100%;">
                     <tr>
-                        <p style="color: GREEN;">language: <?=Yii::app()->session['language']?></p>
-
                         <td style="width: 70%;" valign=top>
                             <?php echo $content; ?>
                         </td>
