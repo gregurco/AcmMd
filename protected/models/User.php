@@ -31,6 +31,8 @@ class User extends CActiveRecord
 		// will receive user inputs.
 		return array(
             array('login', 'unique'),
+            array('name', 'match', 'pattern'=>'/^([a-zA-ZА-Яа-я])+$/', 'message'=>'Логин должен содержать только буквы русского или румынского алфавита'),
+            array('surname', 'match', 'pattern'=>'/^([a-zA-ZА-Яа-я])+$/', 'message'=>'Логин должен содержать только буквы русского или румынского алфавита'),
 			array('login, password', 'required'),
 			array('admin', 'numerical', 'integerOnly'=>true),
 			array('login, password, name, surname', 'length', 'max'=>255),
@@ -113,7 +115,10 @@ class User extends CActiveRecord
             $this->password = md5($this->password);
             $this->admin = 0;
         }
-
+   //     $repassword = $this->password;
+     //   if($repassword == )
         return parent::BeforeSave();
     }
+
+
 }

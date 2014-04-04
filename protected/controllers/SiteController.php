@@ -21,6 +21,31 @@ class SiteController extends Controller
 		);
 	}
 
+    public function accessRules()
+    {
+        return array(
+            array('allow',  // allow all users to perform 'index' and 'view' actions
+                'actions'=>array('register','login'),
+                'users'=>array('?'),
+            ),
+            array('allow', // allow authenticated user to perform 'create' and 'update' actions
+                'actions'=>array('logout'),
+                'users'=>array('@'),
+            ),
+            array('deny',  // deny all users
+                'users'=>array('*'),
+                'message'=>'Access Denied.',
+            ),
+        );
+    }
+
+    public function filters()
+    {
+        return array(
+            'accessControl', // perform access control for CRUD operations
+        );
+    }
+
     public function actionRegister()
     {
         $model=new User;
@@ -102,7 +127,7 @@ class SiteController extends Controller
 			$model->attributes=$_POST['LoginForm'];
 			// validate user input and redirect to the previous page if valid
 			if($model->validate() && $model->login())
-				$this->redirect(Yii::app()->user->returnUrl);
+				$this->redirect(Yii::app()->homeUrl);
 		}
 		// display the login form
 		$this->render('login',array('model'=>$model));
