@@ -2,13 +2,10 @@
 /* @var $this ProblemController */
 /* @var $model Problem */
 
-$this->breadcrumbs=array(
-	'Problems'=>array('index'),
-	'Manage',
-);
-
 $this->menu=array(
 	array('label'=>'Список задач', 'url'=>array('index')),
+    array('label'=>'Решенные задачи', 'url'=>array('#')),
+    array('label'=>'Начатые задачи', 'url'=>array('#')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -33,7 +30,11 @@ $('.search-form form').submit(function(){
 	'filter'=>$model,
     'enableSorting'=>false,
 	'columns'=>array(
-		'id',
+        array(
+            'header' => '№',
+            'value'  => '$this->grid->dataProvider->pagination->currentPage * $this->grid->dataProvider->pagination->pageSize + $row + 1',
+            'htmlOptions'=>array('width'=>'20px'),
+        ),
         array(
             'name' => 'name_'.Yii::app()->session['language'],
             'value' => '$data->name_'.Yii::app()->session['language'],

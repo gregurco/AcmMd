@@ -62,6 +62,10 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
             'htmlOptions' => array(
                 'style' => 'text-align: center;',
             ),
+            'filter' => array(
+                0 => "Нет",
+                1 => "Да",
+            ),
         ),
         array(
             'type'=>'html',

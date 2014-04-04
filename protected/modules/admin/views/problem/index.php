@@ -42,10 +42,10 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'id',
 		'name_ru',
 		'name_ro',
+        /*
 		'description_ru',
 		'description_ro',
 		'input_ru',
-		/*
 		'input_ro',
 		'output_ru',
 		'output_ro',
@@ -53,8 +53,19 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'limit_time',
 		'limit_memory',
 		'examples',
-		'hide',
-		*/
+        */
+        array(
+            'name' => 'hide',
+            'value' => '($data->hide)?"Да":"Нет"',
+            'header' => 'Скрыто',
+            'htmlOptions' => array(
+                'style' => 'text-align: center;',
+            ),
+            'filter' => array(
+                0 => "Нет",
+                1 => "Да",
+            ),
+        ),
 		array(
 			'class'=>'CButtonColumn',
 		),

@@ -4,6 +4,8 @@
 
 $this->menu=array(
     array('label'=>'Список задач', 'url'=>array('index')),
+    array('label'=>'Решенные задачи', 'url'=>array('#')),
+    array('label'=>'Начатые задачи', 'url'=>array('#')),
 );
 ?>
 

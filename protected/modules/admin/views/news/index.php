@@ -50,6 +50,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
             'value' => '$data->title_ro',
             'header' => 'Название (рум.)',
         ),
+        /*
         array(
             'name' => 'text_ru',
             'value' => '$data->text_ru',
@@ -60,6 +61,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
             'value' => '$data->text_ro',
             'header' => 'Текст (рум.)',
         ),
+        */
         array(
             'name' => 'create',
             'value' => 'date("j.m.Y",$data->create)',
@@ -74,6 +76,10 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
             'header' => 'Скрыто',
             'htmlOptions' => array(
                 'style' => 'text-align: center;',
+            ),
+            'filter' => array(
+                0 => "Нет",
+                1 => "Да",
             ),
         ),
 		array(
