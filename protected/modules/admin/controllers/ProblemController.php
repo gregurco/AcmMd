@@ -72,12 +72,13 @@ class ProblemController extends Controller
         {
 
             ### Erase empty rows from array
+            $examples = array();
             for($i=0; $i<10; $i++){
-                if (empty($_POST['example'][$i]['input']) && empty($_POST['example'][$i]['output']))
-                    unset($_POST['example'][$i]);
+                if (!empty($_POST['example'][$i]['input']) || !empty($_POST['example'][$i]['output']))
+                    $examples[] = $_POST['example'][$i];
             }
 
-            $_POST['Problem']['examples'] = json_encode($_POST['example']);
+            $_POST['Problem']['examples'] = json_encode($examples);
 			$model->attributes=$_POST['Problem'];
 
             if($model->save())
@@ -104,6 +105,14 @@ class ProblemController extends Controller
 
 		if(isset($_POST['Problem']))
 		{
+            ### Erase empty rows from array
+            $examples = array();
+            for($i=0; $i<10; $i++){
+                if (!empty($_POST['example'][$i]['input']) || !empty($_POST['example'][$i]['output']))
+                    $examples[] = $_POST['example'][$i];
+            }
+
+            $_POST['Problem']['examples'] = json_encode($examples);
 			$model->attributes=$_POST['Problem'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));

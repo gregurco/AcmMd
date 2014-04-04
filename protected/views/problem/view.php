@@ -17,3 +17,20 @@ $this->menu=array(
 
 <h3><?=Yii::t('interface', 'OutputDate')?>:</h3>
 <?php echo $model->output; ?>
+
+<? if (!empty($model->examples)): ?>
+<table class="problem_example">
+    <tr>
+        <th width="1%">№</th>
+        <th>input.txt</th>
+        <th>output.txt</th>
+    </tr>
+    <? foreach($model->examples as $key => $value): ?>
+        <tr>
+            <td><?=($key+1)?></td>
+            <td><?=$value['input']?></td>
+            <td><?=$value['output']?></td>
+        </tr>
+    <? endforeach; ?>
+</table>
+<? endif; ?>

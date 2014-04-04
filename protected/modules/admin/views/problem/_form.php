@@ -115,7 +115,7 @@
 		<?php echo $form->error($model,'limit_memory'); ?>
 	</div>
 
-    <? if ($model->getIsNewRecord()): ?>
+    <? if ($model->getIsNewRecord() || empty($model->examples)): ?>
 	<div class="row" id="examples">
         <label>Examples</label>
         <input type="button" value="Добавить ряд" onclick="addTableRow($('#examples'));">
@@ -152,6 +152,48 @@
             <? endfor; ?>
         </table>
 	</div>
+    <? endif; ?>
+
+    <? if (!$model->getIsNewRecord() && !empty($model->examples)): ?>
+        <div class="row" id="examples">
+            <label>Examples</label>
+            <input type="button" value="Добавить ряд" onclick="addTableRow($('#examples'));">
+            <table id="example">
+                <tr>
+                    <th>Input</th>
+                    <th>Output</th>
+                    <th>Explanation</th>
+                </tr>
+                <? for ($i=0; $i<10; $i++):?>
+                    <tr  <?=(!isset($model->examples[$i]['input']) && !isset($model->examples[$i]['output']) && !isset($model->examples[$i]['explanation']))?"style='display: none;'":""?> >
+                        <td>
+                            <?php $this->widget('application.extensions.ckeditor.CKEditor', array(
+                                'name'=>'example['.$i.'][input]',
+                                'language'=>'ru',
+                                'editorTemplate'=>'basic',
+                                'value' => isset($model->examples[$i]['input'])? $model->examples[$i]['input'] : '',
+                            )); ?>
+                        </td>
+                        <td>
+                            <?php $this->widget('application.extensions.ckeditor.CKEditor', array(
+                                'name'=>'example['.$i.'][output]',
+                                'language'=>'ru',
+                                'editorTemplate'=>'basic',
+                                'value' => isset($model->examples[$i]['input'])? $model->examples[$i]['output'] : '',
+                            )); ?>
+                        </td>
+                        <td>
+                            <?php $this->widget('application.extensions.ckeditor.CKEditor', array(
+                                'name'=>'example['.$i.'][explanation]',
+                                'language'=>'ru',
+                                'editorTemplate'=>'basic',
+                                'value' => isset($model->examples[$i]['input'])? $model->examples[$i]['explanation'] : '',
+                            )); ?>
+                        </td>
+                    </tr>
+                <? endfor; ?>
+            </table>
+        </div>
     <? endif; ?>
 
 	<div class="row">
