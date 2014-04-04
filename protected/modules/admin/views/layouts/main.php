@@ -89,7 +89,7 @@
                         array('label'=>'Пользователи', 'url'=>array('user/')),
                         array('label'=>'Задачи', 'url'=>array('problem/')),
                         array('label'=>'Настройки', 'url'=>array('')),
-                        array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
+                        array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/profile/logout'), 'visible'=>!Yii::app()->user->isGuest),
                     ),
                     'activateParents'=>true,
                     'id' => 'menu',

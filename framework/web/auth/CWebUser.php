@@ -75,11 +75,11 @@ class CWebUser extends CApplicationComponent implements IWebUser
 	/**
 	 * @var string|array the URL for login. If using array, the first element should be
 	 * the route to the login action, and the rest name-value pairs are GET parameters
-	 * to construct the login URL (e.g. array('/site/login')). If this property is null,
+	 * to construct the login URL (e.g. array('/profile/login')). If this property is null,
 	 * a 403 HTTP exception will be raised instead.
 	 * @see CController::createUrl
 	 */
-	public $loginUrl=array('/site/login');
+	public $loginUrl=array('/profile/login');
 	/**
 	 * @var array the property values (in name-value pairs) used to initialize the identity cookie.
 	 * Any property of {@link CHttpCookie} may be initialized.
@@ -103,7 +103,7 @@ class CWebUser extends CApplicationComponent implements IWebUser
 	 * Defaults to false. This property is effective only when {@link allowAutoLogin} is true.
 	 * When this is false, the identity cookie will expire after the specified duration since the user
 	 * is initially logged in. When this is true, the identity cookie will expire after the specified duration
-	 * since the user visits the site the last time.
+	 * since the user visits the profile the last time.
 	 * @see allowAutoLogin
 	 * @since 1.1.0
 	 */

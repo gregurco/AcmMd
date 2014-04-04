@@ -1642,7 +1642,7 @@ abstract class CApplication extends CModule
 }
 class CWebApplication extends CApplication
 {
-	public $defaultController='site';
+	public $defaultController='profile';
 	public $layout='main';
 	public $controllerMap=array();
 	public $catchAllRequest;
@@ -4067,7 +4067,7 @@ class CWebUser extends CApplicationComponent implements IWebUser
 	const AUTH_ABSOLUTE_TIMEOUT_VAR='__absolute_timeout';
 	public $allowAutoLogin=false;
 	public $guestName='Guest';
-	public $loginUrl=array('/site/login');
+	public $loginUrl=array('/profile/login');
 	public $identityCookie;
 	public $authTimeout;
 	public $absoluteAuthTimeout;

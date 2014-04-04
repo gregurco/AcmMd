@@ -13,6 +13,7 @@
  */
 class User extends CActiveRecord
 {
+    //public $repassword;
     public $verifyCode;
 	/**
 	 * @return string the associated database table name
@@ -62,6 +63,7 @@ class User extends CActiveRecord
 			'id' => 'ID',
 			'login' => 'Логин',
 			'password' => 'Пароль',
+            //'repassword' => 'Повторите пароль',
 			'name' => 'Имя',
 			'surname' => 'Фамилия',
 			'admin' => 'Admin',
@@ -111,13 +113,18 @@ class User extends CActiveRecord
 	}
 
     protected function beforeSave(){
+        //$repassword = $_POST['repassword'];
+
         if ($this->isNewRecord){
             $this->password = md5($this->password);
             $this->admin = 0;
         }
-   //     $repassword = $this->password;
-     //   if($repassword == )
+
+        //if($repassword != $_POST['password'])
+
+
         return parent::BeforeSave();
+
     }
 
 

@@ -42,7 +42,7 @@ PARAMETERS
    be used only if the class can be autoloaded.
 
  * view-name: required, the name of the view to be generated. This should
-   be the path alias of the view script (e.g. 'application.views.site.contact').
+   be the path alias of the view script (e.g. 'application.views.profile.contact').
 
  * scenario: optional, the name of the scenario in which the model is used
    (e.g. 'update', 'login'). This determines which model attributes the
@@ -51,7 +51,7 @@ PARAMETERS
 
 EXAMPLES
  * Generates the view script for the 'ContactForm' model:
-        form ContactForm application.views.site.contact
+        form ContactForm application.views.profile.contact
 
 EOD;
 	}

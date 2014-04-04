@@ -93,7 +93,7 @@
  * <pre>
  * array(
  *   // a standard rule
- *   '<action:(login|logout)>' => 'site/<action>',
+ *   '<action:(login|logout)>' => 'profile/<action>',
  *   // a custom rule using data in DB
  *   array(
  *     'class' => 'application.components.MyUrlRule',

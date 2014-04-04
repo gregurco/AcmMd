@@ -12,7 +12,7 @@
  * CCaptcha renders a CAPTCHA image element.
  *
  * CCaptcha is used together with {@link CCaptchaAction} to provide {@link http://en.wikipedia.org/wiki/Captcha CAPTCHA}
- * - a way of preventing site spam.
+ * - a way of preventing profile spam.
  *
  * The image element rendered by CCaptcha will display a CAPTCHA image generated
  * by an action of class {@link CCaptchaAction} belonging to the current controller.

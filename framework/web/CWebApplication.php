@@ -28,7 +28,7 @@
  * User requests are resolved as controller-action pairs and additional parameters.
  * CWebApplication creates the requested controller instance and let it to handle
  * the actual user request. If the user does not specify controller ID, it will
- * assume {@link defaultController} is requested (which defaults to 'site').
+ * assume {@link defaultController} is requested (which defaults to 'profile').
  *
  * Controller class files must reside under the directory {@link getControllerPath controllerPath}
  * (defaults to 'protected/controllers'). The file name and the class name must be
@@ -58,9 +58,9 @@
 class CWebApplication extends CApplication
 {
 	/**
-	 * @return string the route of the default controller, action or module. Defaults to 'site'.
+	 * @return string the route of the default controller, action or module. Defaults to 'profile'.
 	 */
-	public $defaultController='site';
+	public $defaultController='profile';
 	/**
 	 * @var mixed the application-wide layout. Defaults to 'main' (relative to {@link getLayoutPath layoutPath}).
 	 * If this is false, then no layout will be used.
