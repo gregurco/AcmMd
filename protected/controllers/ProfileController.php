@@ -51,22 +51,25 @@ class ProfileController extends Controller
         $model=new User;
         $model->scenario = 'register';
 
+        $form=new User();
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
         if(isset($_POST['User']))
         {
             $model->attributes=$_POST['User'];
-
-            if($model->save()){
-                Yii::app()->user->setFlash('register','Вы можете авторизоваться.');
-            }else{
-                Yii::app()->user->setFlash('register','Что то не так...');
-            }
+            $form->attributes=$_POST['User'];
+            if($form->validate())
+                if($model->validate())
+                {
+                    $form->save();
+                    Yii::app()->user->setFlash('register','Вы можете авторизоваться.');
+                }
         }
 
         $this->render('register',array(
             'model'=>$model,
+            'form'=>$form,
         ));
     }
 
@@ -143,4 +146,29 @@ class ProfileController extends Controller
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
 	}
+/*
+    public function actionSignup()
+    {
+        // Создать модель и указать ей, что используется сценарий регистрации
+        $user = new User(User::SCENARIO_SIGNUP);
+
+        // Если пришли данные для сохранения
+        if(isset($_POST['User']))
+        {
+            // Безопасное присваивание значений атрибутам
+            $user->attributes = $_POST['User'];
+
+            // Проверка данных
+            if($user->validate())
+            {
+                // Сохранить полученные данные
+                // false нужен для того, чтобы не производить повторную проверку
+                $user->save(false);
+            }
+        }
+
+        // Вывести форму
+        $this->render('form_signup', array('form'=>$user));
+    }
+*/
 }

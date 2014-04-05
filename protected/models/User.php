@@ -13,7 +13,7 @@
  */
 class User extends CActiveRecord
 {
-    //public $repassword;
+    public $password_repeat;
     public $verifyCode;
 	/**
 	 * @return string the associated database table name
@@ -26,22 +26,32 @@ class User extends CActiveRecord
 	/**
 	 * @return array validation rules for model attributes.
 	 */
-	public function rules()
-	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
-		return array(
-            array('login', 'unique'),
-            array('name', 'match', 'pattern'=>'/^([a-zA-ZА-Яа-я])+$/', 'message'=>'Логин должен содержать только буквы русского или румынского алфавита'),
-            array('surname', 'match', 'pattern'=>'/^([a-zA-ZА-Яа-я])+$/', 'message'=>'Логин должен содержать только буквы русского или румынского алфавита'),
-			array('login, password', 'required'),
-			array('admin', 'numerical', 'integerOnly'=>true),
-			array('login, password, name, surname', 'length', 'max'=>255),
-			// The following rule is used by search().
-			// @todo Please remove those attributes that should not be searched.
-			array('id, login, password, name, surname, admin', 'safe', 'on'=>'search'),
-		);
-	}
+
+    public function rules()
+    {
+        return array(
+            // Логин и пароль - обязательные поля
+            array('login, password', 'required'),
+            // Длина логина должна быть в пределах от 5 до 30 символов
+            array('login', 'length', 'min'=>5, 'max'=>30),
+            // Логин должен соответствовать шаблону
+            array('login', 'match', 'pattern'=>'/^[A-z][\w]+$/'),
+            // Логин должен быть уникальным
+            array('login', 'unique','message'=>'Логин занят'),
+            // Длина пароля не менее 6 символов
+            array('password', 'length', 'min'=>6, 'max'=>30),
+            // Повторный пароль и почта обязательны для сценария регистрации
+            array('password_repeat', 'required'),
+            // Длина повторного пароля не менее 6 символов
+            array('password_repeat', 'length', 'min'=>6, 'max'=>30),
+            //CCaptcha
+            array('verifyCode', 'captcha', 'allowEmpty'=>!CCaptcha::checkRequirements(), 'on' => 'register'),
+            // Пароль должен совпадать с повторным паролем для сценария регистрации
+            array('password', 'compare', 'compareAttribute'=>'password_repeat'),
+            array('name', 'match', 'pattern'=>'/^([a-zA-ZА-Яа-я])+$/', 'message'=>'Имя должен содержать только буквы русского или румынского алфавита'),
+            array('surname', 'match', 'pattern'=>'/^([a-zA-ZА-Яа-я])+$/', 'message'=>'Фамилия должен содержать только буквы русского или румынского алфавита'),
+        );
+    }
 
 	/**
 	 * @return array relational rules.
@@ -54,16 +64,18 @@ class User extends CActiveRecord
 		);
 	}
 
-	/**
-	 * @return array customized attribute labels (name=>label)
-	 */
+    public function safeAttributes()
+    {
+        return array('login', 'password', 'repeat_password', 'name', 'surname');
+    }
+
 	public function attributeLabels()
 	{
 		return array(
 			'id' => 'ID',
 			'login' => 'Логин',
 			'password' => 'Пароль',
-            //'repassword' => 'Повторите пароль',
+            'password_repeat' => 'Повторите пароль',
 			'name' => 'Имя',
 			'surname' => 'Фамилия',
 			'admin' => 'Admin',
@@ -113,19 +125,14 @@ class User extends CActiveRecord
 	}
 
     protected function beforeSave(){
-        //$repassword = $_POST['repassword'];
-
-        if ($this->isNewRecord){
-            $this->password = md5($this->password);
-            $this->admin = 0;
+        if(parent::beforeSave())
+        {
+            if ($this->isNewRecord){
+                $this->password = md5($this->password);
+                $this->admin = 0;
+            }
+            return true;
         }
-
-        //if($repassword != $_POST['password'])
-
-
-        return parent::BeforeSave();
-
+        return false;
     }
-
-
 }

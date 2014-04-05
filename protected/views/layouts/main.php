@@ -92,7 +92,7 @@
                         array('label'=>Yii::t('menu', 'AdminCenter'), 'url'=>array('/admin'), 'visible'=>Yii::app()->user->userIsAdmin()),
                         array('label'=>Yii::t('menu', 'Enter'), 'url'=>array('/profile/login'), 'visible'=>Yii::app()->user->isGuest),
                         array('label'=>Yii::t('menu', 'Registration'), 'url'=>array('/profile/register'), 'visible'=>Yii::app()->user->isGuest),
-                        array('label'=>Yii::t('menu', 'AdminCenter').' ('.Yii::app()->user->name.')', 'url'=>array('/profile/logout'), 'visible'=>!Yii::app()->user->isGuest),                    ),
+                        array('label'=>Yii::t('menu', 'Exit').' ('.Yii::app()->user->name.')', 'url'=>array('/profile/logout'), 'visible'=>!Yii::app()->user->isGuest),                    ),
                     'activateParents'=>true,
                     'id' => 'menu',
                 )); ?>

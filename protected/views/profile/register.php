@@ -1,10 +1,3 @@
-
-<?php
-/* @var $this UserController */
-/* @var $model User */
-/* @var $form CActiveForm */
-?>
-
 <div class="form" align="center">
     <?php if(Yii::app()->user->hasFlash('register')): ?>
         <div class="flash-success">
@@ -12,6 +5,36 @@
         </div>
 
     <?php else: ?>
+    <?php echo CHtml::beginForm(); ?>
+
+    <?php echo CHtml::errorSummary($form)?>
+
+    <div class="row">
+        <?php echo CHtml::activeLabel($form,'login')?><b class="errorMessage">*</b>
+        <?php echo CHtml::activeTextField($form,'login'); ?>
+    </div>
+
+    <div class="row">
+        <?php echo CHtml::activeLabel($form,'password'); ?><b class="errorMessage">*</b>
+        <?php echo CHtml::activePasswordField($form,'password'); ?>
+    </div>
+
+    <div class="row">
+        <?php echo CHtml::activeLabel($form,'password_repeat'); ?><b class="errorMessage">*</b>
+        <?php echo CHtml::activePasswordField($form,'password_repeat'); ?>
+    </div>
+
+    <div class="row">
+        <?php echo CHtml::activeLabel($form,'name'); ?>
+        <?php echo CHtml::activeTextField($form,'name') ?>
+    </div>
+
+    <div class="row">
+        <?php echo CHtml::activeLabel($form,'surname'); ?>
+        <?php echo CHtml::activeTextField($form,'surname') ?>
+    </div>
+
+
     <?php $form=$this->beginWidget('CActiveForm', array(
         'id'=>'user-form',
         // Please note: When you enable ajax validation, make sure the corresponding
@@ -20,39 +43,11 @@
         // See class documentation of CActiveForm for details on this.
         'enableAjaxValidation'=>false,
     )); ?>
-
-
-    <?php echo $form->errorSummary($model); ?>
-
-    <div class="row">
-        <?php echo $form->labelEx($model,'login'); ?>
-        <?php echo $form->textField($model,'login',array('size'=>60,'maxlength'=>255)); ?>
-        <?php echo $form->error($model,'login'); ?>
-    </div>
-
-    <div class="row">
-        <?php echo $form->labelEx($model,'password'); ?>
-        <?php echo $form->passwordField($model,'password',array('size'=>60,'maxlength'=>255)); ?>
-        <?php echo $form->error($model,'password'); ?>
-    </div>
-
-    <div class="row">
-        <?php echo $form->labelEx($model,'name'); ?>
-        <?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>255)); ?>
-        <?php echo $form->error($model,'name'); ?>
-    </div>
-
-    <div class="row">
-        <?php echo $form->labelEx($model,'surname'); ?>
-        <?php echo $form->textField($model,'surname',array('size'=>60,'maxlength'=>255)); ?>
-        <?php echo $form->error($model,'surname'); ?>
-    </div>
-
     <?php if(CCaptcha::checkRequirements()): ?>
         <div class="row">
             <?php echo $form->labelEx($model,'verifyCode'); ?>
             <div>
-                <?php $this->widget('CCaptcha'); ?>
+                <?php $this->widget('CCaptcha'); ?><b class="errorMessage"> *</b>
                 <?php echo $form->textField($model,'verifyCode'); ?>
             </div>
             <?php echo $form->error($model,'verifyCode'); ?>
@@ -60,11 +55,12 @@
     <?php endif; ?>
 
 
-    <div class="row buttons">
-        <?php echo CHtml::submitButton('Зарегестрироваться'); ?>
+
+    <div class="row submit">
+        <?php echo CHtml::submitButton('Зарегистрироваться'); ?>
     </div>
 
-    <?php $this->endWidget(); ?>
-
-</div><!-- form -->
+    <?php echo CHtml::endForm(); ?>
+</div>
+<?php $this->endWidget(); ?>
 <?php endif; ?>
