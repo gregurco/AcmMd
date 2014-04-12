@@ -157,16 +157,24 @@ class ProfileController extends Controller
         ));
     }
 
-    public function actionPassword($id)
+    public function actionPassword()
     {
-        $model=$this->loadModel($id);
+        $model=$this->loadModel(Yii::app()->user->id);
 
-        $model->password = $_POST['password'];
-        if($model->save())
-            $this->redirect(array('view','id'=>$model->id));
-
+        if (isset($_POST['password'])){
+            $model->password = $_POST['password'];
+            if($model->save())
+                $this->redirect(array('view','id'=>$model->id));
+        }
 
         $this->render('password');
     }
 
+    public function loadModel($id)
+    {
+        $model=User::model()->findByPk($id);
+        if($model===null)
+            throw new CHttpException(404,'The requested page does not exist.');
+        return $model;
+    }
 }
