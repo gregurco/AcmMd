@@ -35,7 +35,7 @@ class User extends CActiveRecord
             // Длина логина должна быть в пределах от 5 до 30 символов
             array('login', 'length', 'min'=>5, 'max'=>30),
             // Логин должен соответствовать шаблону
-            array('login', 'match', 'pattern'=>'/^[A-z][\w]+$/'),
+            array('login', 'match', 'pattern'=>'/^[A-z0-9][\w]+$/'),
             // Логин должен быть уникальным
             array('login', 'unique','message'=>'Логин занят'),
             // Длина пароля не менее 6 символов
@@ -48,8 +48,8 @@ class User extends CActiveRecord
             array('verifyCode', 'captcha', 'allowEmpty'=>!CCaptcha::checkRequirements(), 'on' => 'register'),
             // Пароль должен совпадать с повторным паролем для сценария регистрации
             array('password', 'compare', 'compareAttribute'=>'password_repeat'),
-            array('name', 'match', 'pattern'=>'/^([a-zA-ZА-Яа-я])+$/', 'message'=>'Имя должен содержать только буквы русского или румынского алфавита'),
-            array('surname', 'match', 'pattern'=>'/^([a-zA-ZА-Яа-я])+$/', 'message'=>'Фамилия должен содержать только буквы русского или румынского алфавита'),
+            array('name', 'match', 'pattern'=>'/^([a-zA-ZА-Яа-я])+$/u', 'message'=>'Имя должно содержать только буквы русского или румынского алфавита'),
+            array('surname', 'match', 'pattern'=>'/^([a-zA-ZА-Яа-я])+$/u', 'message'=>'Фамилия должен содержать только буквы русского или румынского алфавита'),
         );
     }
 
@@ -135,4 +135,5 @@ class User extends CActiveRecord
         }
         return false;
     }
+
 }

@@ -2,6 +2,8 @@
 
 class ProfileController extends Controller
 {
+
+    public $layout='/layouts/column2';
 	/**
 	 * Declares class-based actions.
 	 */
@@ -29,7 +31,7 @@ class ProfileController extends Controller
                 'users'=>array('?'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions'=>array('logout'),
+                'actions'=>array('logout','settings','index','password'),
                 'users'=>array('@'),
             ),
             array('deny',  // deny all users
@@ -63,7 +65,7 @@ class ProfileController extends Controller
                 if($model->validate())
                 {
                     $form->save();
-                    Yii::app()->user->setFlash('register','Вы можете авторизоваться.');
+                    Yii::app()->user->setFlash('register',"Вы можете авторизоваться как: $model->login.");
                 }
         }
 
@@ -146,29 +148,25 @@ class ProfileController extends Controller
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
 	}
-/*
-    public function actionSignup()
+
+    public function actionIndex()
     {
-        // Создать модель и указать ей, что используется сценарий регистрации
-        $user = new User(User::SCENARIO_SIGNUP);
-
-        // Если пришли данные для сохранения
-        if(isset($_POST['User']))
-        {
-            // Безопасное присваивание значений атрибутам
-            $user->attributes = $_POST['User'];
-
-            // Проверка данных
-            if($user->validate())
-            {
-                // Сохранить полученные данные
-                // false нужен для того, чтобы не производить повторную проверку
-                $user->save(false);
-            }
-        }
-
-        // Вывести форму
-        $this->render('form_signup', array('form'=>$user));
+        $model=new User();
+        $this->render('index',array(
+            'model'=>$model,
+        ));
     }
-*/
+
+    public function actionPassword($id)
+    {
+        $model=$this->loadModel($id);
+
+        $model->password = $_POST['password'];
+        if($model->save())
+            $this->redirect(array('view','id'=>$model->id));
+
+
+        $this->render('password');
+    }
+
 }

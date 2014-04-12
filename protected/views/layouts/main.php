@@ -85,6 +85,7 @@
                 <?php $this->widget('zii.widgets.CMenu',array(
                     'items'=>array(
                         array('label'=>Yii::t('menu', 'News'), 'url'=>array('/news')),
+                        array('label'=>Yii::t('menu', 'PrivateOffice'), 'url'=>array('profile/index'),'visible'=>!Yii::app()->user->isGuest),
                         array('label'=>Yii::t('menu', 'Problems'), 'url'=>array('/problem')),
                         array('label'=>Yii::t('menu', 'Olympiads'), 'url'=>array('')),
                         array('label'=>Yii::t('menu', 'Articles'), 'url'=>array('')),
@@ -92,7 +93,8 @@
                         array('label'=>Yii::t('menu', 'AdminCenter'), 'url'=>array('/admin'), 'visible'=>Yii::app()->user->userIsAdmin()),
                         array('label'=>Yii::t('menu', 'Enter'), 'url'=>array('/profile/login'), 'visible'=>Yii::app()->user->isGuest),
                         array('label'=>Yii::t('menu', 'Registration'), 'url'=>array('/profile/register'), 'visible'=>Yii::app()->user->isGuest),
-                        array('label'=>Yii::t('menu', 'Exit').' ('.Yii::app()->user->name.')', 'url'=>array('/profile/logout'), 'visible'=>!Yii::app()->user->isGuest),                    ),
+                        array('label'=>Yii::t('menu', 'Exit').' ('.Yii::app()->user->name.')', 'url'=>array('/profile/logout'), 'visible'=>!Yii::app()->user->isGuest),
+                    ),
                     'activateParents'=>true,
                     'id' => 'menu',
                 )); ?>

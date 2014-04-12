@@ -1,6 +1,7 @@
 <?php
 return array (
     'News' => 'Новости',
+    'PrivateOffice' => 'Личный кабинет',
     'Problems' => 'Задачи',
     'Olympiads' => 'Олимпиады',
     'Articles' => 'Статьи',
