@@ -43,8 +43,15 @@ class ProblemController extends Controller
 	 */
 	public function actionView($id)
 	{
+        $model = $this->loadModel($id);
+
+        if (isset($_POST['send'])){
+            Solution::createNewSolution('file', $model->id);
+            $this->redirect(array('solution/index','pid'=>$model->id));
+        }
+
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+			'model'=> $model,
 		));
 	}
 

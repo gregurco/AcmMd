@@ -3,6 +3,7 @@ return array (
     'News' => 'Новости',
     'PrivateOffice' => 'Личный кабинет',
     'Problems' => 'Задачи',
+    'Solution' => 'Решения',
     'Olympiads' => 'Олимпиады',
     'Articles' => 'Статьи',
     'Rating' => 'Рейтинг',

@@ -6,6 +6,7 @@ $this->menu=array(
 	array('label'=>'Список задач', 'url'=>array('index')),
     array('label'=>'Решенные задачи', 'url'=>array('#')),
     array('label'=>'Начатые задачи', 'url'=>array('#')),
+    array('label'=>'Отправленные решения', 'url'=>array('solution/index')),
 );
 
 Yii::app()->clientScript->registerScript('search', "

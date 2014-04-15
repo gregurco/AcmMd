@@ -3,6 +3,7 @@ return array (
     'News' => 'Noutăți',
     'PrivateOffice' => 'Birou privat',
     'Problems' => 'Sarcini',
+    'Solution' => 'Soluțiile',
     'Olympiads' => 'Olimpiade',
     'Articles' => 'Articole',
     'Rating' => 'Clasament',

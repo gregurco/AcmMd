@@ -6,6 +6,8 @@ $this->menu=array(
     array('label'=>'Список задач', 'url'=>array('index')),
     array('label'=>'Решенные задачи', 'url'=>array('#')),
     array('label'=>'Начатые задачи', 'url'=>array('#')),
+    array('label'=>'Отправленные решения', 'url'=>array('solution/index')),
+    array('label'=>'Отправленные решения этой задачи', 'url'=>array('solution/index', 'pid'=>$model->id)),
 );
 ?>
 
@@ -35,4 +37,17 @@ $this->menu=array(
             </tr>
         <? endforeach; ?>
     </table>
+<? endif; ?>
+
+<? if (!Yii::app()->user->isGuest):?>
+    <form method="post" enctype="multipart/form-data">
+        Файл: <input type="file" name="file"><br>
+        Компилятор: <select name="lang">
+            <option value="FPC">Free Pascal 2.4.4</option>
+            <option value="GCC">GCC 4.6.3</option>
+        </select><br>
+        <input type="submit" value="Отправить" name="send">
+    </form>
+<? else: ?>
+    Для отправки решения, вы должны авторизироваться.
 <? endif; ?>
