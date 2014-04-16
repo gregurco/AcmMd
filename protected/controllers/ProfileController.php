@@ -31,7 +31,7 @@ class ProfileController extends Controller
                 'users'=>array('?'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions'=>array('logout','settings','index','password'),
+                'actions'=>array('logout','settings','index','changePassword'),
                 'users'=>array('@'),
             ),
             array('deny',  // deny all users
@@ -50,10 +50,9 @@ class ProfileController extends Controller
 
     public function actionRegister()
     {
-        $model=new User;
-        $model->scenario = 'register';
+        $model=new User();
 
-        $form=new User();
+        $form=new User('register');
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
@@ -157,17 +156,21 @@ class ProfileController extends Controller
         ));
     }
 
-    public function actionPassword()
+    public function actionChangePassword()
     {
         $model=$this->loadModel(Yii::app()->user->id);
+        $model->setScenario('changePassword');
 
-        if (isset($_POST['password'])){
-            $model->password = $_POST['password'];
+        if(isset($_POST['User']))
+        {
+            $model->attributes=$_POST['User'];
             if($model->save())
-                $this->redirect(array('view','id'=>$model->id));
+                Yii::app()->user->setFlash('password',"Пароль был изменен.");
         }
 
-        $this->render('password');
+        $model->password = $model->password_repeat = '';
+
+        $this->render('changePassword', array('model' => $model));
     }
 
     public function loadModel($id)

@@ -1,7 +1,7 @@
 <?php
 /* @var $this SiteController */
 $this->menu=array(
-    array('label'=>'Изменить пароль', 'url'=>array('profile/password')),
+    array('label'=>'Изменить пароль', 'url'=>array('profile/changePassword')),
 );
 $this->pageTitle=Yii::app()->name;
 ?>

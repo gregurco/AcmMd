@@ -31,23 +31,23 @@ class User extends CActiveRecord
     {
         return array(
             // Логин и пароль - обязательные поля
-            array('login, password', 'required'),
+            array('login', 'required', 'on' => 'register'),
             // Длина логина должна быть в пределах от 5 до 30 символов
             array('login', 'length', 'min'=>5, 'max'=>30),
             // Логин должен соответствовать шаблону
             array('login', 'match', 'pattern'=>'/^[A-z0-9][\w]+$/'),
             // Логин должен быть уникальным
             array('login', 'unique','message'=>'Логин занят'),
-            // Длина пароля не менее 6 символов
-            array('password', 'length', 'min'=>6, 'max'=>30),
-            // Повторный пароль и почта обязательны для сценария регистрации
-            array('password_repeat', 'required'),
-            // Длина повторного пароля не менее 6 символов
-            array('password_repeat', 'length', 'min'=>6, 'max'=>30),
+
+            // Пароль и повторный пароль должны быть обязательны при регистрации и редактировании пароля
+            array('password, password_repeat', 'required', 'on' => 'register, changePassword'),
+            // Длина пароля и повторного пароля не менее 6 символов при нужном сценарии
+            array('password, password_repeat', 'length', 'min'=>6, 'max'=>30, 'on' => 'register, changePassword'),
+            // Пароль должен совпадать с повторным паролем для сценария регистрации
+            array('password', 'compare', 'compareAttribute'=>'password_repeat', 'on' => 'register, changePassword'),
+
             //CCaptcha
             array('verifyCode', 'captcha', 'allowEmpty'=>!CCaptcha::checkRequirements(), 'on' => 'register'),
-            // Пароль должен совпадать с повторным паролем для сценария регистрации
-            array('password', 'compare', 'compareAttribute'=>'password_repeat'),
             array('name', 'match', 'pattern'=>'/^([a-zA-ZА-Яа-я])+$/u', 'message'=>'Имя должно содержать только буквы русского или румынского алфавита'),
             array('surname', 'match', 'pattern'=>'/^([a-zA-ZА-Яа-я])+$/u', 'message'=>'Фамилия должен содержать только буквы русского или румынского алфавита'),
         );
@@ -127,9 +127,8 @@ class User extends CActiveRecord
     protected function beforeSave(){
         if(parent::beforeSave())
         {
-            if ($this->isNewRecord){
+            if ($this->isNewRecord || $this->getScenario()=='changePassword' || $this->getScenario()=='changePasswordAdmin'){
                 $this->password = md5($this->password);
-                $this->admin = 0;
             }
             return true;
         }
