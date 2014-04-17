@@ -6,31 +6,31 @@
     <?php else: ?>
         <?php echo CHtml::beginForm(); ?>
 
-        <?php echo CHtml::errorSummary($form)?>
+        <?php echo CHtml::errorSummary($model)?>
 
         <div class="row">
-            <?php echo CHtml::activeLabel($form,'login')?><b class="errorMessage">*</b>
-            <?php echo CHtml::activeTextField($form,'login'); ?>
+            <?php echo CHtml::activeLabel($model,'login')?><b class="errorMessage">*</b>
+            <?php echo CHtml::activeTextField($model,'login'); ?>
         </div>
 
         <div class="row">
-            <?php echo CHtml::activeLabel($form,'password'); ?><b class="errorMessage">*</b>
-            <?php echo CHtml::activePasswordField($form,'password'); ?>
+            <?php echo CHtml::activeLabel($model,'password'); ?><b class="errorMessage">*</b>
+            <?php echo CHtml::activePasswordField($model,'password'); ?>
         </div>
 
         <div class="row">
-            <?php echo CHtml::activeLabel($form,'password_repeat'); ?><b class="errorMessage">*</b>
-            <?php echo CHtml::activePasswordField($form,'password_repeat'); ?>
+            <?php echo CHtml::activeLabel($model,'password_repeat'); ?><b class="errorMessage">*</b>
+            <?php echo CHtml::activePasswordField($model,'password_repeat'); ?>
         </div>
 
         <div class="row">
-            <?php echo CHtml::activeLabel($form,'name'); ?>
-            <?php echo CHtml::activeTextField($form,'name') ?>
+            <?php echo CHtml::activeLabel($model,'name'); ?>
+            <?php echo CHtml::activeTextField($model,'name') ?>
         </div>
 
         <div class="row">
-            <?php echo CHtml::activeLabel($form,'surname'); ?>
-            <?php echo CHtml::activeTextField($form,'surname') ?>
+            <?php echo CHtml::activeLabel($model,'surname'); ?>
+            <?php echo CHtml::activeTextField($model,'surname') ?>
         </div>
 
 
@@ -52,8 +52,6 @@
                 <?php echo $form->error($model,'verifyCode'); ?>
             </div>
         <?php endif; ?>
-
-
 
         <div class="row submit">
             <?php echo CHtml::submitButton('Зарегистрироваться'); ?>

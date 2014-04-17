@@ -33,7 +33,7 @@ class User extends CActiveRecord
             // Логин и пароль - обязательные поля
             array('login', 'required', 'on' => 'register'),
             // Длина логина должна быть в пределах от 5 до 30 символов
-            array('login', 'length', 'min'=>5, 'max'=>30),
+            array('login', 'length', 'min'=>5, 'max'=>30, 'on'=>'register'),
             // Логин должен соответствовать шаблону
             array('login', 'match', 'pattern'=>'/^[A-z0-9][\w]+$/'),
             // Логин должен быть уникальным

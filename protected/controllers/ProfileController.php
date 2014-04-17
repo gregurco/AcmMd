@@ -50,27 +50,20 @@ class ProfileController extends Controller
 
     public function actionRegister()
     {
-        $model=new User();
-
-        $form=new User('register');
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
+        $model=new User('register');
 
         if(isset($_POST['User']))
         {
             $model->attributes=$_POST['User'];
-            $form->attributes=$_POST['User'];
-            if($form->validate())
                 if($model->validate())
                 {
-                    $form->save();
+                    $model->save();
                     Yii::app()->user->setFlash('register',"Вы можете авторизоваться как: $model->login.");
                 }
         }
 
         $this->render('register',array(
             'model'=>$model,
-            'form'=>$form,
         ));
     }
 
