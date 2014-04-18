@@ -89,7 +89,7 @@
                         array('label'=>Yii::t('menu', 'Users'), 'url'=>array('user/')),
                         array('label'=>Yii::t('menu', 'Problems'), 'url'=>array('problem/')),
                         array('label'=>Yii::t('menu', 'Solution'), 'url'=>array('solution/')),
-                        array('label'=>Yii::t('menu', 'Settings'), 'url'=>array('')),
+                        array('label'=>Yii::t('menu', 'Settings'), 'url'=>array('config/')),
                         array('label'=>Yii::t('menu', 'Exit').' ('.Yii::app()->user->name.')', 'url'=>array('/profile/logout'), 'visible'=>!Yii::app()->user->isGuest),
                    ),
                     'activateParents'=>true,

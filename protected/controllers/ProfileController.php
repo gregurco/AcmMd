@@ -50,21 +50,25 @@ class ProfileController extends Controller
 
     public function actionRegister()
     {
-        $model=new User('register');
+        if (!Yii::app()->config->get('REGISTR.ALLOW')){
+            $this->render('registerClose');
+        }else{
+            $model=new User('register');
 
-        if(isset($_POST['User']))
-        {
-            $model->attributes=$_POST['User'];
-                if($model->validate())
-                {
-                    $model->save();
-                    Yii::app()->user->setFlash('register',"Вы можете авторизоваться как: $model->login.");
-                }
+            if(isset($_POST['User']))
+            {
+                $model->attributes=$_POST['User'];
+                    if($model->validate())
+                    {
+                        $model->save();
+                        Yii::app()->user->setFlash('register',"Вы можете авторизоваться как: $model->login.");
+                    }
+            }
+
+            $this->render('register',array(
+                'model'=>$model,
+            ));
         }
-
-        $this->render('register',array(
-            'model'=>$model,
-        ));
     }
 
 	public function actionError()
