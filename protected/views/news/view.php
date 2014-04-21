@@ -1,20 +1,11 @@
 <?php
 /* @var $this NewsController */
 /* @var $model News */
-
+$this->menu=array(
+    array('label'=>'Список новостей', 'url'=>array('index')),
+);
 ?>
 
-<h1>View News #<?php echo $model->id; ?></h1>
+<h1 align="center"><?php echo $model->getTitle($model); ?></h1>
 
-<?php $this->widget('zii.widgets.CDetailView', array(
-	'data'=>$model,
-	'attributes'=>array(
-		'id',
-		'title_ru',
-		'title_ro',
-		'text_ru',
-		'text_ro',
-		'create',
-		'hide',
-	),
-)); ?>
+<p align="left"><?php echo $model->getText($model); ?></p>

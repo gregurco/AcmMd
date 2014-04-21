@@ -31,7 +31,7 @@ class ProfileController extends Controller
                 'users'=>array('?'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions'=>array('logout','settings','index','changePassword','changeName','changeSurname'),
+                'actions'=>array('logout','settings','index','changePassword','changeProfile'),
                 'users'=>array('@'),
             ),
             array('deny',  // deny all users
@@ -178,37 +178,20 @@ class ProfileController extends Controller
         return $model;
     }
 
-    public function actionChangeName()
+    public function actionChangeProfile()
     {
         $model=$this->loadModel(Yii::app()->user->id);
-        $model->setScenario('changeName');
+        $model->setScenario('changeProfile');
 
         if(isset($_POST['User']))
         {
             $model->attributes=$_POST['User'];
             if($model->save())
-                Yii::app()->user->setFlash('name',"Имя было изменено.");
+                Yii::app()->user->setFlash('profile',"Данные были изменены.");
         }
 
-        $model->name = '';
 
-        $this->render('changeName', array('model' => $model));
+        $this->render('changeProfile', array('model' => $model));
     }
 
-    public function actionChangeSurname()
-    {
-        $model=$this->loadModel(Yii::app()->user->id);
-        $model->setScenario('changeSurname');
-
-        if(isset($_POST['User']))
-        {
-            $model->attributes=$_POST['User'];
-            if($model->save())
-                Yii::app()->user->setFlash('surname',"Фамилия была изменена.");
-        }
-
-        $model->surname = '';
-
-        $this->render('changeSurname', array('model' => $model));
-    }
 }

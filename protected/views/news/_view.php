@@ -5,7 +5,7 @@
 
 <div class="view">
     <div>
-        <h2><a href="#" style="line-height: 120%;"><?php echo CHtml::encode($data->getTitle($data)); ?></a></h2>
+        <h2><?php echo CHtml::link(CHtml::encode($data->getTitle($data)), array("view", "id" => $data->id)); ?></h2>
     </div>
 
     <div style="margin-bottom: 10px; font-size: 11px; color: #666;">
