@@ -3,7 +3,6 @@
 class CronController extends Controller
 {
     private $console;
-    private $filename = '1';
 
     public function CronController(){
         $this->console = new CConsole();
@@ -13,7 +12,7 @@ class CronController extends Controller
 	{
         /* Компилируем программы */
         $this->compile();
-
+        $this->test();
 
 	}
 
@@ -22,11 +21,17 @@ class CronController extends Controller
         foreach($model as $solution){
             Solution::model()->updateByPk($solution->id, array('status' => 2));
 
-            $filename = '1.pas';
             $dir = realpath('.').'/files/private/received/'.date("Y.m.d", $solution->time_send).'/'.$solution->id.'/';
 
-            $compile_result = $this->console->exec('/usr/lib/fpc/2.4.4/ppc386 '.$dir.$filename);
-            $compile_result = str_replace($dir, '', $compile_result);
+            if ($solution->compiler == 'FPC'){
+                $compile_result = $this->console->exec('fpc '.$dir.$solution->file_name);
+                $compile_result = str_replace($dir, '', $compile_result);
+            }elseif($solution->compiler == 'GCC'){
+                $this->console->exec('gcc '.$dir.$solution->file_name.' -o '.$dir.'1 2> '.$dir.'log.txt');
+                $compile_result = file_get_contents($dir.'log.txt');
+                $compile_result = nl2br($compile_result);
+                $compile_result = str_replace($dir, '', $compile_result);
+            }
 
             if (file_exists($dir.'1')){
                 /* Успешная компиляция */
@@ -35,6 +40,14 @@ class CronController extends Controller
                 /* Ошибка: Ошибка компиляции */
                 Solution::model()->updateByPk($solution->id, array('status' => 10, 'log_compile' => $compile_result));
             }
+        }
+    }
+
+    private function test(){
+        $model = Solution::model()->findAllByAttributes(array('status' => 3));
+        foreach($model as $solution){
+            Solution::model()->updateByPk($solution->id, array('status' => 4));
+
         }
     }
 

@@ -4,6 +4,7 @@
 
 $this->menu=array(
     array('label'=>'Список задач', 'url'=>array('problem/index')),
+    array('label'=>'Описание задачи', 'url'=>array('problem/view', 'id'=>$model->p_id)),
     array('label'=>'Все отправленные решения', 'url'=>array('solution/index')),
 );
 ?>

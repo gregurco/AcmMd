@@ -13,6 +13,7 @@
  * @property string $log_compile
  * @property integer $status
  * @property string $compiler
+ * @property string $file_name
  */
 class Solution extends CActiveRecord
 {
@@ -138,6 +139,7 @@ class Solution extends CActiveRecord
         $post = new Solution;
         $post->u_id = Yii::app()->user->id;
         $post->p_id = $p_id;
+        $post->file_name = Solution::filename($compiler);
         $post->compiler = $compiler;
         $post->save();
 
@@ -147,22 +149,37 @@ class Solution extends CActiveRecord
         mkdir($dir);
 
         $uploaded = Yii::app()->file->set($file_name);
-        $uploaded->copy($dir . '1.pas');
+        $uploaded->copy($dir . $post->file_name);
 
         return true;
+    }
+
+    static function filename($compiler){
+        switch($compiler){
+            case 'FPC':
+                return '1.pas';
+                break;
+            case 'GCC':
+                return '1.c';
+                break;
+        }
     }
 
     public function getStatusName($num){
         switch($num){
             case 1:
-                return "Ожидание";
+                return "Ожидание компиляции";
                 break;
             case 2:
                 return "Компилирование";
                 break;
             case 3:
+                return "Ожидание тестирования";
+                break;
+            case 4:
                 return "Тестирование";
                 break;
+
 
             case 10:
                 return "Ошибка компиляции";
