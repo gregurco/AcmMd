@@ -46,7 +46,7 @@ class ProblemController extends Controller
         $model = $this->loadModel($id);
 
         if (isset($_POST['send'])){
-            Solution::createNewSolution('file', $model->id);
+            Solution::createNewSolution('file', $model->id, $_POST['compiler']);
             $this->redirect(array('solution/index','pid'=>$model->id));
         }
 

@@ -12,6 +12,7 @@
  * @property string $tests
  * @property string $log_compile
  * @property integer $status
+ * @property string $compiler
  */
 class Solution extends CActiveRecord
 {
@@ -33,10 +34,10 @@ class Solution extends CActiveRecord
 		return array(
 			array('time_send, status', 'numerical', 'integerOnly'=>true),
 			array('u_id, p_id, result', 'length', 'max'=>10),
-			array('tests, log_compile', 'safe'),
+			array('tests, log_compile, compiler', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, u_id, p_id, time_send, result, tests, log_compile, status', 'safe', 'on'=>'search'),
+			array('id, u_id, p_id, time_send, result, tests, log_compile, status, compiler', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -96,6 +97,7 @@ class Solution extends CActiveRecord
 		$criteria->compare('tests',$this->tests,true);
 		$criteria->compare('log_compile',$this->log_compile,true);
 		$criteria->compare('status',$this->status);
+        $criteria->compare('compiler',$this->compiler);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -132,17 +134,41 @@ class Solution extends CActiveRecord
     /*
      * Method that handle sended solutions
      */
-    public function createNewSolution($file_name, $p_id){
+    public function createNewSolution($file_name, $p_id, $compiler){
         $post = new Solution;
         $post->u_id = Yii::app()->user->id;
         $post->p_id = $p_id;
+        $post->compiler = $compiler;
         $post->save();
 
-        $dir = realpath('.').'/files/private/received/'.date("Y.m.d").'/'.$post->id.'/';
+        $dir = realpath('.').'/files/private/received/'.date("Y.m.d");
+        @mkdir($dir);
+        $dir = $dir.'/'.$post->id.'/';
         mkdir($dir);
 
         $uploaded = Yii::app()->file->set($file_name);
-        $uploaded->copy($dir . $uploaded->basename);
+        $uploaded->copy($dir . '1.pas');
+
         return true;
+    }
+
+    public function getStatusName($num){
+        switch($num){
+            case 1:
+                return "Ожидание";
+                break;
+            case 2:
+                return "Компилирование";
+                break;
+            case 3:
+                return "Тестирование";
+                break;
+
+            case 10:
+                return "Ошибка компиляции";
+                break;
+            default:
+                return "";
+        }
     }
 }

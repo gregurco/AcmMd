@@ -35,8 +35,14 @@ $this->menu=array(
         ),
         array(
             'name' => 'status',
-            'value' => '$data->status',
+            'value' => '$data->getStatusName($data->status)',
             'header' => 'Статус',
+            'filter'=> false,
+        ),
+        array(
+            'name' => 'compiler',
+            'value' => '$data->compiler',
+            'header' => 'Компилятор',
             'filter'=> false,
         ),
         array(

@@ -10,8 +10,34 @@ $this->menu=array(
 ?>
 <h1 style="text-align: center;">"<?php echo $model->problem->name; ?>"</h1>
 
-<h3>Время отправки:</h3>
-<?php echo date("j.m.Y",$model->time_send); ?>
-<hr>
-<h3>Набранно пунктов:</h3>
-<?php echo $model->result; ?>
+<?php $this->widget('zii.widgets.CDetailView', array(
+    'data'=>$model,
+    'attributes'=>array(
+        array(
+            'name' => 'time_send',
+            'value' => date("j.m.Y", $model->time_send),
+            'label' => 'Время отправки',
+        ),
+        array(
+            'name' => 'status',
+            'value' => $model->getStatusName($model->status),
+            'label' => 'Статус',
+        ),
+        array(
+            'name' => 'result',
+            'value' => $model->result,
+            'label' => 'Результат',
+        ),
+        array(
+            'name' => 'compiler',
+            'value' => $model->compiler,
+            'label' => 'Компилятор',
+        ),
+        array(
+            'name' => 'log_compile',
+            'value' => $model->log_compile,
+            'label' => 'Лог компилятора',
+            'type' => 'html',
+        ),
+    ),
+)); ?>

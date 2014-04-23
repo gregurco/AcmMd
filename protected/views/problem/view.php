@@ -42,7 +42,7 @@ $this->menu=array(
 <? if (!Yii::app()->user->isGuest):?>
     <form method="post" enctype="multipart/form-data">
         Файл: <input type="file" name="file"><br>
-        Компилятор: <select name="lang">
+        Компилятор: <select name="compiler">
             <option value="FPC">Free Pascal 2.4.4</option>
             <option value="GCC">GCC 4.6.3</option>
         </select><br>
