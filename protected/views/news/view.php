@@ -6,9 +6,9 @@ $this->menu=array(
 );
 ?>
 
-<h1 align="center"><?php echo $model->getTitle(); ?></h1>
+<h1 align="center"><?php echo $model->title; ?></h1>
 
-<p align="left"><?php echo $model->getText(); ?></p>
+<p align="left"><?php echo $model->text; ?></p>
 
 <h2>Комментарии(<?php echo $newsComment->model()->countByAttributes(array('n_id'=>$model->id))?>)</h2>
 

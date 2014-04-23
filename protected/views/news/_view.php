@@ -5,8 +5,8 @@
 
 <div class="view">
     <div>
-        <h2><?php echo CHtml::link(CHtml::encode($data->getTitle()), array("view", "id" => $data->id)); ?></h2>
-    </div>
+        <h2><?php echo CHtml::link(CHtml::encode($data->title), array("view", "id" => $data->id)); ?></h2>
+</div>
 
     <div style="margin-bottom: 10px; font-size: 11px; color: #666;">
         <?php echo CHtml::encode(Yii::t('interface', 'NCreated')); ?>:
@@ -15,7 +15,7 @@
 
     <div>
         <p align="justify">
-            <?php echo $data->getText(); ?>
+            <?php echo $data->text; ?>
         </p>
     </div>
 </div>
