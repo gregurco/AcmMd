@@ -110,40 +110,7 @@ class News extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
-	}
-/*
-    public static function getTitle($model)
-    {
-        if(Yii::app()->session['language']=='ru')
-        {
-            if(!empty($model->title_ru))
-                return $model->title_ru;
-            else return $model->title_ro;
-        }
-        elseif(Yii::app()->session['language']=='ro')
-        {
-            if(!empty($model->title_ro))
-                return $model->title_ro;
-            else return $model->title_ru;
-        }
     }
-
-    public static function getText($model)
-    {
-        if(Yii::app()->session['language']=='ru')
-        {
-            if(!empty($model->text_ru))
-                return $model->text_ru;
-            else return $model->text_ro;
-        }
-        elseif(Yii::app()->session['language']=='ro')
-        {
-            if(!empty($model->text_ro))
-                return $model->text_ro;
-            else return $model->text_ru;
-        }
-    }
-*/
 
     public function getTitle()
     {

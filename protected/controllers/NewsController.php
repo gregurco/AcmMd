@@ -64,6 +64,8 @@ class NewsController extends Controller
 
         if(isset($_POST['NewsComment']))
         {
+            if(Yii::app()->user->isGuest)
+                $newsComment->name=$_POST['NewsComment']['name'];
             $newsComment->text=$_POST['text'];
             $newsComment->verifyCode=$_POST['NewsComment']['verifyCode'];
             $newsComment->n_id = $id;

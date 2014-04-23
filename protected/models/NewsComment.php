@@ -13,6 +13,7 @@
 class NewsComment extends CActiveRecord
 {
     public $verifyCode;
+   // public $name;
 
     /**
 	 * @return string the associated database table name
@@ -33,12 +34,18 @@ class NewsComment extends CActiveRecord
 			array('text', 'required', 'message' => 'Впишите свой комментарии', 'on' => 'create'),
 			array('n_id, u_id, create', 'numerical', 'integerOnly'=>true),
             array('verifyCode', 'captcha', 'allowEmpty'=>!CCaptcha::checkRequirements(), 'on' => 'create'),
-
+            array('name','valid_name'),
             // The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, n_id, u_id, create, text', 'safe', 'on'=>'search'),
+			array('id, n_id, name, u_id, create, text', 'safe', 'on'=>'search'),
 		);
 	}
+
+    public function valid_name($attribute,$params){
+        if(Yii::app()->user->isGuest && $this->$attribute == ''){
+            CModel::addError($attribute, 'Заполните поля "Имя"');
+        }
+    }
 
 	/**
 	 * @return array relational rules.
@@ -63,6 +70,7 @@ class NewsComment extends CActiveRecord
 			'u_id' => 'User_id',
 			'create' => 'Create',
 			'text' => 'Text',
+            'name' => 'Имя Гостя'
 		);
 	}
 
@@ -89,6 +97,7 @@ class NewsComment extends CActiveRecord
 		$criteria->compare('u_id',$this->u_id);
 		$criteria->compare('create',$this->create);
 		$criteria->compare('text',$this->text,true);
+		$criteria->compare('name',$this->name,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

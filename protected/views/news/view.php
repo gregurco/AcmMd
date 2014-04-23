@@ -38,7 +38,7 @@ $this->menu=array(
     if(Yii::app()->user->isGuest)
     {
         echo '<div>';
-        echo CHtml::activeTextArea($newsComment,'name');
+        echo '<strong>Введите своё Имя:  </strong>' . CHtml::activeTextField($newsComment,'name') . '<b class="errorMessage"> *</b>';
         echo '</div>';
     }
 
@@ -79,7 +79,7 @@ $this->menu=array(
         echo "<div>";
         if(isset($arr->user->login))
             echo'<strong>' . $arr->user->login . '</strong>';
-        else echo '<strong>Гость</strong>';
+        else echo '<strong>'.$arr->name.'</strong>';
         echo ' • '. '<span style="margin-bottom: 10px; font-size: 11px; color: #666;">' .
             CHtml::encode(date("Y-m-d H:i:s",$arr['create'])) . '</span>';
         echo '<br/>';
