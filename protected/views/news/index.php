@@ -1,6 +1,5 @@
 <?php
-/* @var $this NewsController */
-/* @var $dataProvider CActiveDataProvider */
+$this->layout='//layouts/column1';
 ?>
 
 <?php $this->widget('zii.widgets.CListView', array(

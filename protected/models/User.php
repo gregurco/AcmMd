@@ -79,7 +79,8 @@ class User extends CActiveRecord
 			'name' => 'Имя',
 			'surname' => 'Фамилия',
 			'admin' => 'Admin',
-            'verifyCode' => 'Введите код с картинки'
+            'verifyCode' => 'Введите код с картинки',
+            'time_register' => 'Время регистрации',
 		);
 	}
 
@@ -107,6 +108,7 @@ class User extends CActiveRecord
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('surname',$this->surname,true);
 		$criteria->compare('admin',$this->admin);
+		$criteria->compare('time_register',$this->time_register);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -130,6 +132,7 @@ class User extends CActiveRecord
             if ($this->isNewRecord || $this->getScenario()=='changePassword' || $this->getScenario()=='changePasswordAdmin'){
                 $this->password = md5($this->password);
             }
+            $this->time_register = time();
             return true;
         }
         return false;
