@@ -5,7 +5,7 @@
 
 <div class="view">
     <div>
-        <h2><?php echo CHtml::link(CHtml::encode($data->getTitle($data)), array("view", "id" => $data->id)); ?></h2>
+        <h2><?php echo CHtml::link(CHtml::encode($data->getTitle()), array("view", "id" => $data->id)); ?></h2>
     </div>
 
     <div style="margin-bottom: 10px; font-size: 11px; color: #666;">
@@ -15,7 +15,7 @@
 
     <div>
         <p align="justify">
-            <?php echo $data->getText($data); ?>
+            <?php echo $data->getText(); ?>
         </p>
     </div>
 </div>

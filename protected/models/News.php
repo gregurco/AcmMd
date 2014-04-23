@@ -111,7 +111,7 @@ class News extends CActiveRecord
 	{
 		return parent::model($className);
 	}
-
+/*
     public static function getTitle($model)
     {
         if(Yii::app()->session['language']=='ru')
@@ -143,6 +143,19 @@ class News extends CActiveRecord
             else return $model->text_ru;
         }
     }
+*/
+
+    public function getTitle()
+    {
+        $attribute = 'title_' . Yii::app()->session['language'];
+        return $this->{$attribute};
+    }
+    public function getText()
+    {
+        $attribute = 'text_' . Yii::app()->session['language'];
+        return $this->{$attribute};
+    }
+
 
 
     protected function beforeSave()

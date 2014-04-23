@@ -6,9 +6,9 @@ $this->menu=array(
 );
 ?>
 
-<h1 align="center"><?php echo $model->getTitle($model); ?></h1>
+<h1 align="center"><?php echo $model->getTitle(); ?></h1>
 
-<p align="left"><?php echo $model->getText($model); ?></p>
+<p align="left"><?php echo $model->getText(); ?></p>
 
 <h2>Комментарии(<?php echo $newsComment->model()->countByAttributes(array('n_id'=>$model->id))?>)</h2>
 
@@ -31,6 +31,22 @@ $this->menu=array(
         'value' => $newsComment->text,
         )); ?>
     </div>
+
+
+
+<?php
+    if(Yii::app()->user->isGuest)
+    {
+        echo '<div>';
+        echo CHtml::activeTextArea($newsComment,'name');
+        echo '</div>';
+    }
+
+?>
+
+
+
+
 
     <?php $form=$this->beginWidget('CActiveForm', array(
             'id'=>'user-form',
