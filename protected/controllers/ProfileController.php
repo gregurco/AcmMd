@@ -147,7 +147,7 @@ class ProfileController extends Controller
 
     public function actionIndex()
     {
-        $model=new User();
+        $model=$this->loadModel(Yii::app()->user->id);
         $this->render('index',array(
             'model'=>$model,
         ));

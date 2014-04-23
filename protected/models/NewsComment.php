@@ -7,7 +7,7 @@
  * @property integer $id
  * @property integer $n_id
  * @property integer $u_id
- * @property integer $created
+ * @property integer $create
  * @property string $text
  */
 class NewsComment extends CActiveRecord
@@ -28,11 +28,11 @@ class NewsComment extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('n_id, u_id, created, text', 'required'),
-			array('n_id, u_id, created', 'numerical', 'integerOnly'=>true),
+			array('text', 'required'),
+			array('n_id, u_id, create', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, n_id, u_id, created, text', 'safe', 'on'=>'search'),
+			array('id, n_id, u_id, create, text', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -44,6 +44,7 @@ class NewsComment extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+            'user'=>array(self::BELONGS_TO, 'User', 'u_id'),
 		);
 	}
 
@@ -54,9 +55,9 @@ class NewsComment extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'n_id' => 'N',
-			'u_id' => 'U',
-			'created' => 'Created',
+			'n_id' => 'News_id',
+			'u_id' => 'User_id',
+			'create' => 'Create',
 			'text' => 'Text',
 		);
 	}
@@ -82,7 +83,7 @@ class NewsComment extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('n_id',$this->n_id);
 		$criteria->compare('u_id',$this->u_id);
-		$criteria->compare('created',$this->created);
+		$criteria->compare('create',$this->create);
 		$criteria->compare('text',$this->text,true);
 
 		return new CActiveDataProvider($this, array(
@@ -100,4 +101,27 @@ class NewsComment extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+    public static function all()
+    {
+        $models = self::model()->findAll();
+
+        $array = array();
+
+        foreach ($models as $one)
+        {
+            $array[$one->id] = $one->text;
+        }
+        return $array;
+    }
+
+    protected function beforeSave()
+    {
+        if($this->isNewRecord)
+        {
+            $this->create = time();
+            $this->u_id = Yii::app()->user->id;
+        }
+        return parent::beforeSave();
+    }
 }

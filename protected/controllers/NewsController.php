@@ -43,8 +43,18 @@ class NewsController extends Controller
 	 */
 	public function actionView($id)
 	{
+        $form = new NewsComment();
+        if(isset($_POST['NewsComment']))
+        {
+            $form->text=$_POST['NewsComment']['text'];
+            $form->n_id = $id;
+
+            if($form->save())
+                Yii::app()->user->setFlash('addComment',"Комментарий был успешно добавлен.");
+        }
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
+            'form'=>$form,
 		));
 	}
 

@@ -6,4 +6,15 @@ $this->menu=array(
 );
 ?>
 
-<h1 align="center">Какая-то информация о пользователе <?php echo Yii::app()->user->name;?></h1>
+<h1 align="center">Информация о пользователе: <?php echo Yii::app()->user->name;?></h1>
+<?php $this->widget('zii.widgets.CDetailView', array(
+    'data'=>$model,
+    'attributes'=>array(
+        'name',
+        'surname',
+        array(
+            'label' => 'Время регистрации',
+            'value' => CHtml::encode(date("Y-m-d H:i:s",$model->time_register)),
+        )
+    ),
+)); ?>
