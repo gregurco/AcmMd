@@ -12,7 +12,9 @@
  */
 class NewsComment extends CActiveRecord
 {
-	/**
+    public $verifyCode;
+
+    /**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
@@ -28,9 +30,11 @@ class NewsComment extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('text', 'required'),
+			array('text', 'required', 'message' => 'Впишите свой комментарии', 'on' => 'create'),
 			array('n_id, u_id, create', 'numerical', 'integerOnly'=>true),
-			// The following rule is used by search().
+            array('verifyCode', 'captcha', 'allowEmpty'=>!CCaptcha::checkRequirements(), 'on' => 'create'),
+
+            // The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, n_id, u_id, create, text', 'safe', 'on'=>'search'),
 		);
@@ -101,19 +105,6 @@ class NewsComment extends CActiveRecord
 	{
 		return parent::model($className);
 	}
-
-    public static function all()
-    {
-        $models = self::model()->findAll();
-
-        $array = array();
-
-        foreach ($models as $one)
-        {
-            $array[$one->id] = $one->text;
-        }
-        return $array;
-    }
 
     protected function beforeSave()
     {

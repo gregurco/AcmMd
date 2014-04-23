@@ -14,6 +14,7 @@
  */
 class News extends CActiveRecord
 {
+    public $verifyCode;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -33,7 +34,8 @@ class News extends CActiveRecord
 			array('create, hide', 'numerical', 'integerOnly'=>true),
 			array('title_ru, title_ro', 'length', 'max'=>255),
 			array('text_ru, text_ro', 'safe'),
-			// The following rule is used by search().
+            array('verifyCode', 'captcha', 'allowEmpty'=>!CCaptcha::checkRequirements(), 'on' => 'view'),
+            // The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, title_ru, title_ro, text_ru, text_ro, create, hide', 'safe', 'on'=>'search'),
 		);
@@ -47,7 +49,7 @@ class News extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-            'newsComment'=>array(self::HAS_MANY, 'NewsComment', 'n_id'),
+            'newsComment'=>array(self::HAS_MANY, 'NewsComment', 'n_id','order'=>'newsComment.create DESC')
 		);
 	}
 
@@ -64,6 +66,7 @@ class News extends CActiveRecord
 			'text_ro' => 'Text Ro',
 			'create' => 'Create',
 			'hide' => 'Hide',
+            'verifyCode' => 'Введите код с картинки',
 		);
 	}
 
@@ -141,10 +144,12 @@ class News extends CActiveRecord
         }
     }
 
+
     protected function beforeSave()
     {
         if($this->isNewRecord)
             $this->create = time();
         return parent::beforeSave();
     }
+
 }

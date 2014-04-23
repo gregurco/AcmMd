@@ -11,6 +11,22 @@ class NewsController extends Controller
 	/**
 	 * @return array action filters
 	 */
+    public function actions()
+    {
+        return array(
+            // captcha action renders the CAPTCHA image displayed on the contact page
+            'captcha'=>array(
+                'class'=>'CCaptchaAction',
+                'backColor'=>0xFFFFFF,
+            ),
+            // page action renders "static" pages stored under 'protected/views/profile/pages'
+            // They can be accessed via: index.php?r=profile/page&view=FileName
+            'page'=>array(
+                'class'=>'CViewAction',
+            ),
+        );
+    }
+
 	public function filters()
 	{
 		return array(
@@ -28,7 +44,7 @@ class NewsController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','captcha'),
 				'users'=>array('*'),
 			),
 			array('deny',  // deny all users
@@ -43,18 +59,31 @@ class NewsController extends Controller
 	 */
 	public function actionView($id)
 	{
-        $form = new NewsComment();
+        $model = $this->loadModel($id);
+        $newsComment = new NewsComment('create');
+
         if(isset($_POST['NewsComment']))
         {
-            $form->text=$_POST['NewsComment']['text'];
-            $form->n_id = $id;
+            $newsComment->text=$_POST['text'];
+            $newsComment->verifyCode=$_POST['NewsComment']['verifyCode'];
+            $newsComment->n_id = $id;
 
-            if($form->save())
-                Yii::app()->user->setFlash('addComment',"Комментарий был успешно добавлен.");
+            if($newsComment->validate())
+            {
+                if($newsComment->save()){
+                    $newsComment->unsetAttributes();
+                    Yii::app()->user->setFlash('addComment',"Комментарий был успешно добавлен.");
+                }
+            }
+
         }
+
+        $newsComment->verifyCode = '';
+
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-            'form'=>$form,
+			'model'=>$model,
+            'newsComment'=>$newsComment,
+            'form'=> '',
 		));
 	}
 
