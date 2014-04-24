@@ -121,6 +121,10 @@ class NewsComment extends CActiveRecord
         {
             $this->create = time();
             $this->u_id = Yii::app()->user->id;
+            if (Yii::app()->config->get('COMMENT.VALIDATE.ALLOW')){
+                $this->hide = 0;
+            }
+            else $this->hide = 1;
         }
         return parent::beforeSave();
     }
