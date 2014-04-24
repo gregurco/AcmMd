@@ -40,4 +40,10 @@ $this->menu=array(
             'type' => 'html',
         ),
     ),
-)); ?>
+));?>
+<br>
+<h3 style="text-align: center;">Тесты</h3>
+<?php $this->widget('zii.widgets.CDetailView', array(
+    'data'=>$model,
+    'attributes'=>$tests,
+));?>
