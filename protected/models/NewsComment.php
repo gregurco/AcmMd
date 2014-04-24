@@ -9,6 +9,7 @@
  * @property integer $u_id
  * @property integer $create
  * @property string $text
+ * @property integer $hide
  */
 class NewsComment extends CActiveRecord
 {
@@ -32,12 +33,12 @@ class NewsComment extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('text', 'required', 'message' => 'Впишите свой комментарии', 'on' => 'create'),
-			array('n_id, u_id, create', 'numerical', 'integerOnly'=>true),
+			array('n_id, u_id, create, hide', 'numerical', 'integerOnly'=>true),
             array('verifyCode', 'captcha', 'allowEmpty'=>!CCaptcha::checkRequirements(), 'on' => 'create'),
             array('name','valid_name'),
             // The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, n_id, name, u_id, create, text', 'safe', 'on'=>'search'),
+			array('id, n_id, name, u_id, create, text, hide', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -98,6 +99,7 @@ class NewsComment extends CActiveRecord
 		$criteria->compare('create',$this->create);
 		$criteria->compare('text',$this->text,true);
 		$criteria->compare('name',$this->name,true);
+        $criteria->compare('hide',$this->hide,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

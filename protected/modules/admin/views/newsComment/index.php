@@ -1,10 +1,9 @@
 <?php
-/* @var $this NewsController */
-/* @var $model News */
+/* @var $this NewsCommentController */
+/* @var $model NewsComment */
 
 $this->menu=array(
-	array('label'=>'Создать новость', 'url'=>array('create')),
-    array('label'=>'Список комментариев', 'url'=>array('newsComment/index')),
+    array('label'=>'Список новостей', 'url'=>array('news/index')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -13,7 +12,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$('#news-grid').yiiGridView('update', {
+	$('#news-comment-grid').yiiGridView('update', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -21,7 +20,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage News</h1>
+<h1>Manage News Comments</h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -36,41 +35,14 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 </div><!-- search-form -->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
-	'id'=>'news-grid',
+	'id'=>'news-comment-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-        array(
-            'name' => 'title_ru',
-            'value' => '$data->title_ru',
-            'header' => 'Название (рус.)',
-        ),
-        array(
-            'name' => 'title_ro',
-            'value' => '$data->title_ro',
-            'header' => 'Название (рум.)',
-        ),
-        /*
-        array(
-            'name' => 'text_ru',
-            'value' => '$data->text_ru',
-            'header' => 'Текст (рус.)',
-        ),
-        array(
-            'name' => 'text_ro',
-            'value' => '$data->text_ro',
-            'header' => 'Текст (рум.)',
-        ),
-        */
-        array(
-            'name' => 'create',
-            'value' => 'date("j.m.Y",$data->create)',
-            'header' => 'Создано',
-            'htmlOptions' => array(
-                'style' => 'text-align: center;',
-            ),
-        ),
+		'n_id',
+		'u_id',
+		'create',
         array(
             'name' => 'hide',
             'value' => '($data->hide)?"Да":"Нет"',

@@ -4,6 +4,7 @@
 
 $this->menu=array(
 	array('label'=>'Список новостей', 'url'=>array('index')),
+    array('label'=>'Список комментариев', 'url'=>array('newsComment/index')),
 );
 ?>
 
