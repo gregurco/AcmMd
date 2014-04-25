@@ -22,10 +22,6 @@ $('.search-form form').submit(function(){
 
 <h1>Manage News Comments</h1>
 
-<p>
-You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
-or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
-</p>
 
 <?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
@@ -40,9 +36,22 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'n_id',
-		'u_id',
-		'create',
+        array(
+            'name'=>'newsTitle',
+            'value'=>'$data->news->title_'.Yii::app()->session["language"],
+        ),
+        array(
+            'name'=>'name',
+            'value'=>'$data->name',
+        ),
+        array(
+            'name'=>'userLogin',
+            'value'=>'($data->user)?$data->user->login:""',
+        ),
+        array(
+            'name'=>'create',
+            'value'=> 'date("Y-m-d H:i:s",$data->create)',
+        ),
         array(
             'name' => 'hide',
             'value' => '($data->hide)?"Да":"Нет"',

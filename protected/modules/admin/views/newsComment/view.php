@@ -18,7 +18,10 @@ $this->menu=array(
 		'id',
 		'n_id',
 		'u_id',
-		'create',
+        array(
+            'label' => 'Написан',
+            'value' => CHtml::encode(date("Y-m-d H:i:s",$model->create)),
+        ),
 		'text',
 		'hide',
 	),

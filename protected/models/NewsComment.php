@@ -14,6 +14,8 @@
 class NewsComment extends CActiveRecord
 {
     public $verifyCode;
+    public $userLogin;
+    public $newsTitle;
    // public $name;
 
     /**
@@ -38,7 +40,7 @@ class NewsComment extends CActiveRecord
             array('name','valid_name'),
             // The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, n_id, name, u_id, create, text, hide', 'safe', 'on'=>'search'),
+			array('id, n_id, name, u_id, create, text, hide, userLogin, newsTitle', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -57,6 +59,7 @@ class NewsComment extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
             'user'=>array(self::BELONGS_TO, 'User', 'u_id'),
+            'news'=>array(self::BELONGS_TO, 'News', 'n_id'),
 		);
 	}
 
@@ -69,9 +72,12 @@ class NewsComment extends CActiveRecord
 			'id' => 'ID',
 			'n_id' => 'News_id',
 			'u_id' => 'User_id',
-			'create' => 'Create',
+			'create' => 'Написан',
 			'text' => 'Text',
-            'name' => 'Имя Гостя'
+            'name' => 'Имя Гостя',
+            'hide' => 'Скрыт',
+            'userLogin' => 'Логин',
+            'newsTitle' => 'Название новости',
 		);
 	}
 
@@ -92,17 +98,34 @@ class NewsComment extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
-
-		$criteria->compare('id',$this->id);
+        $criteria->alias = 't';
+		$criteria->compare('t.id',$this->id);
 		$criteria->compare('n_id',$this->n_id);
 		$criteria->compare('u_id',$this->u_id);
-		$criteria->compare('create',$this->create);
+		$criteria->compare('t.create',$this->create);
 		$criteria->compare('text',$this->text,true);
-		$criteria->compare('name',$this->name,true);
+		$criteria->compare('t.name',$this->name,true);
         $criteria->compare('hide',$this->hide,true);
+        $criteria->compare('user.login', $this->userLogin);
+        $criteria->compare('news.title_'.Yii::app()->session['language'], $this->newsTitle);
+        $criteria->with = array('user','news');
+
+
+        $sort = new CSort();
+        $sort->attributes = array(
+            'userLogin' => array(
+                'asc'=>'user.login',
+                'desc'=>'user.login DESC',
+            ),
+            'newsTitle'=>array(
+                'asc'=>'user.login',
+                'desc'=>'user.login DESC',
+            ),
+        );
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+            'sort'=>$sort,
 		));
 	}
 
@@ -130,4 +153,5 @@ class NewsComment extends CActiveRecord
         }
         return parent::beforeSave();
     }
+
 }
