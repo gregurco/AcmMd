@@ -179,7 +179,9 @@ class Solution extends CActiveRecord
             case 4:
                 return "Тестирование";
                 break;
-
+            case 5:
+                return "Завершено";
+                break;
 
             case 10:
                 return "Ошибка компиляции";
@@ -187,5 +189,11 @@ class Solution extends CActiveRecord
             default:
                 return "";
         }
+    }
+
+    protected function afterFind(){
+        $this->tests = json_decode($this->tests, true);
+
+        return parent::afterFind();
     }
 }
