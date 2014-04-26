@@ -41,13 +41,13 @@
  * For example,
  * <pre>
  * array(
- *     'articles'=>'article/list',
+ *     'article'=>'article/list',
  *     'article/<id:\d+>/*'=>'article/read',
  * )
  * </pre>
  * Two rules are specified in the above:
  * <ul>
- * <li>The first rule says that if the user requests the URL '/path/to/index.php/articles',
+ * <li>The first rule says that if the user requests the URL '/path/to/index.php/article',
  *   it should be treated as '/path/to/index.php/article/list'; and vice versa applies
  *   when constructing such a URL.</li>
  * <li>The second rule contains a named parameter 'id' which is specified using
