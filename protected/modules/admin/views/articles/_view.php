@@ -1,6 +1,6 @@
 <?php
-/* @var $this NewsController */
-/* @var $data News */
+/* @var $this ArticlesController */
+/* @var $data Articles */
 ?>
 
 <div class="view">
@@ -23,10 +23,6 @@
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('text_ro')); ?>:</b>
 	<?php echo CHtml::encode($data->text_ro); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('create')); ?>:</b>
-	<?php echo CHtml::encode($data->create); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('hide')); ?>:</b>

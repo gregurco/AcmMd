@@ -1,6 +1,6 @@
 <?php
-/* @var $this NewsController */
-/* @var $model News */
+/* @var $this ArticlesController */
+/* @var $model Articles */
 /* @var $form CActiveForm */
 ?>
 
@@ -34,11 +34,6 @@
 	<div class="row">
 		<?php echo $form->label($model,'text_ro'); ?>
 		<?php echo $form->textArea($model,'text_ro',array('rows'=>6, 'cols'=>50)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'create'); ?>
-		<?php echo $form->textField($model,'create'); ?>
 	</div>
 
 	<div class="row">

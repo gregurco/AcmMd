@@ -86,6 +86,7 @@
                     'items'=>array(
                         array('label'=>Yii::t('menu', 'MainPage'), 'url'=>array('/'.Yii::app()->defaultController.'/index')),
                         array('label'=>Yii::t('menu', 'News'), 'url'=>array('news/')),
+                        array('label'=>Yii::t('menu', 'Articles'), 'url'=>array('articles/')),
                         array('label'=>Yii::t('menu', 'Users'), 'url'=>array('user/')),
                         array('label'=>Yii::t('menu', 'Problems'), 'url'=>array('problem/')),
                         array('label'=>Yii::t('menu', 'Solution'), 'url'=>array('solution/')),

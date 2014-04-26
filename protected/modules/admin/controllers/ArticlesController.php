@@ -1,12 +1,12 @@
 <?php
 
-class UserController extends Controller
+class ArticlesController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-    public $layout='/layouts/column2';
+	public $layout='//layouts/column2';
 
 	/**
 	 * @return array action filters
@@ -27,8 +27,16 @@ class UserController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','delete','create','update','ChangePassword','password'),
+				'actions'=>array('index','view'),
 				'users'=>array('*'),
+			),
+			array('allow', // allow authenticated user to perform 'create' and 'update' actions
+				'actions'=>array('create','update'),
+				'users'=>array('@'),
+			),
+			array('allow', // allow admin user to perform 'admin' and 'delete' actions
+				'actions'=>array('admin','delete'),
+				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -53,16 +61,16 @@ class UserController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new User;
+		$model=new Articles;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['User']))
+		if(isset($_POST['Articles']))
 		{
-			$model->attributes=$_POST['User'];
+			$model->attributes=$_POST['Articles'];
 			if($model->save())
-				$this->redirect(array('user/index'));
+				$this->redirect(array('articles/'));
 		}
 
 		$this->render('create',array(
@@ -78,15 +86,15 @@ class UserController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
-        $model->validate('update');
+
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['User']))
+		if(isset($_POST['Articles']))
 		{
-			$model->attributes=$_POST['User'];
+			$model->attributes=$_POST['Articles'];
 			if($model->save())
-                $this->redirect(array('user/index'));
+				$this->redirect(array('articles/'));
 		}
 
 		$this->render('update',array(
@@ -105,55 +113,34 @@ class UserController extends Controller
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('/admin/user'));
+			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('articles/'));
 	}
 
 	/**
-	 * Manages all models.
+	 * Lists all models.
 	 */
 	public function actionIndex()
 	{
-		$model=new User('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['User']))
-			$model->attributes=$_GET['User'];
+        $model=new Articles('search');
+        $model->unsetAttributes();  // clear any default values
+        if(isset($_GET['Articles']))
+            $model->attributes=$_GET['Articles'];
 
-		$this->render('index',array(
-			'model'=>$model,
-		));
-	}
-
-    public function actionChangePassword($id){
-        $model=$this->loadModel($id);
-        $model->setScenario('changePasswordAdmin');
-
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
-
-        if(isset($_POST['User']))
-        {
-            $model->password=$_POST['User']['password'];
-            if($model->save())
-                $this->redirect(array('index'));
-        }
-
-        $model->password = '';
-
-        $this->render('changePassword',array(
+        $this->render('index',array(
             'model'=>$model,
         ));
-    }
+	}
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return User the loaded model
+	 * @return Articles the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=User::model()->findByPk($id);
+		$model=Articles::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -161,15 +148,14 @@ class UserController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param User $model the model to be validated
+	 * @param Articles $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='user-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='articles-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
 	}
-
 }
