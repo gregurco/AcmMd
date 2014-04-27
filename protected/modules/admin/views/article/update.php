@@ -1,7 +1,8 @@
 <?php
 $this->menu=array(
 	array('label'=>'Список статей', 'url'=>array('index')),
-	array('label'=>'Создать статью', 'url'=>array('create')),
+    array('label'=>'Список групп статей', 'url'=>array('groupArticle/index')),
+    array('label'=>'Создать статью', 'url'=>array('create')),
 	array('label'=>'Просмотр статьи', 'url'=>array('view', 'id'=>$model->id)),
 );
 ?>

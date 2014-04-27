@@ -51,11 +51,13 @@ class ArticleController extends Controller
 
     public function actionIndex()
     {
-        $dataProvider=new CActiveDataProvider('Article', array(
+        $dataProvider=new CActiveDataProvider('GroupArticle', array(
             'criteria'=>array(
                 'condition'=>'`hide`=0',
-            )
-        ));
+            ),
+        )
+        );
+
         $this->render('index',array(
             'dataProvider'=>$dataProvider,
         ));

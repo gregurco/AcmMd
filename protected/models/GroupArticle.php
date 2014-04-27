@@ -1,24 +1,20 @@
 <?php
 
 /**
- * This is the model class for table "{{articles}}".
+ * This is the model class for table "{{groupArticle}}".
  *
- * The followings are the available columns in table '{{articles}}':
+ * The followings are the available columns in table '{{groupArticle}}':
  * @property integer $id
- * @property string $title_ru
- * @property string $title_ro
- * @property string $text_ru
- * @property string $text_ro
- * @property integer $hide
+ * @property string $title
  */
-class Articles extends CActiveRecord
+class GroupArticle extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return '{{articles}}';
+		return '{{groupArticle}}';
 	}
 
 	/**
@@ -29,12 +25,11 @@ class Articles extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('hide', 'numerical', 'integerOnly'=>true),
-			array('title_ru, title_ro', 'length', 'max'=>255),
-			array('text_ru, text_ro', 'safe'),
+            array('hide', 'numerical', 'integerOnly'=>true),
+            array('title_ru, title_ro', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, title_ru, title_ro, text_ru, text_ro, hide', 'safe', 'on'=>'search'),
+			array('id, title_ru, title_ro, hide', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -46,7 +41,8 @@ class Articles extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-		);
+            'article'=>array(self::HAS_MANY, 'Article', 'g_id', 'condition' => 'article.hide = 0'),
+        );
 	}
 
 	/**
@@ -56,11 +52,9 @@ class Articles extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'title_ru' => 'Title Ru',
-			'title_ro' => 'Title Ro',
-			'text_ru' => 'Text Ru',
-			'text_ro' => 'Text Ro',
-			'hide' => 'Hide',
+			'hide' => 'Скрыт',
+			'title_ru' => 'Title_ru',
+			'title_ro' => 'Title_ro',
 		);
 	}
 
@@ -83,35 +77,28 @@ class Articles extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
+		$criteria->compare('hide',$this->hide);
 		$criteria->compare('title_ru',$this->title_ru,true);
 		$criteria->compare('title_ro',$this->title_ro,true);
-		$criteria->compare('text_ru',$this->text_ru,true);
-		$criteria->compare('text_ro',$this->text_ro,true);
-		$criteria->compare('hide',$this->hide);
 
-		return new CActiveDataProvider($this, array(
+        return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+
+	/**
+	 * Returns the static model of the specified AR class.
+	 * Please note that you should have this exact method in all your CActiveRecord descendants!
+	 * @param string $className active record class name.
+	 * @return GroupArticle the static model class
+	 */
+	public static function model($className=__CLASS__)
+	{
+		return parent::model($className);
 	}
     public function getTitle()
     {
         $attribute = 'title_' . Yii::app()->session['language'];
         return $this->{$attribute};
     }
-    public function getText()
-    {
-        $attribute = 'text_' . Yii::app()->session['language'];
-        return $this->{$attribute};
-    }
-
-	/**
-	 * Returns the static model of the specified AR class.
-	 * Please note that you should have this exact method in all your CActiveRecord descendants!
-	 * @param string $className active record class name.
-	 * @return Articles the static model class
-	 */
-	public static function model($className=__CLASS__)
-	{
-		return parent::model($className);
-	}
 }

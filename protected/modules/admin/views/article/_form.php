@@ -59,8 +59,14 @@
 		<?php echo $form->error($model,'hide'); ?>
 	</div>
 
+    <div class="row">
+		<?php echo $form->labelEx($model,'Группа статей'); ?>
+		<?php echo $form->dropDownList($model,'g_id',CHtml::listData(GroupArticle::model()->findAll(), 'id' ,'title')) ?>
+		<?php echo $form->error($model,'g_id'); ?>
+	</div>
+
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Создать' : 'Сохранить'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

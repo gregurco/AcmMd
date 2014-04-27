@@ -13,6 +13,7 @@
  */
 class Article extends CActiveRecord
 {
+    public $groupTitle;
 	/**
 	 * @return string the associated database table name
 	 */
@@ -29,12 +30,12 @@ class Article extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('hide', 'numerical', 'integerOnly'=>true),
+			array('hide, g_id', 'numerical', 'integerOnly'=>true),
 			array('title_ru, title_ro', 'length', 'max'=>255),
 			array('text_ru, text_ro', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, title_ru, title_ro, text_ru, text_ro, hide', 'safe', 'on'=>'search'),
+			array('id, g_id, title_ru, title_ro, text_ru, text_ro, hide, groupTitle', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -46,6 +47,7 @@ class Article extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+            'groupArticle' => array(self::BELONGS_TO , 'GroupArticle' , 'g_id')
 		);
 	}
 
@@ -60,7 +62,9 @@ class Article extends CActiveRecord
 			'title_ro' => 'Title Ro',
 			'text_ru' => 'Text Ru',
 			'text_ro' => 'Text Ro',
+            'g_id' => 'Group index',
 			'hide' => 'Hide',
+            'groupTitle' => 'Название группы',
 		);
 	}
 
@@ -81,13 +85,24 @@ class Article extends CActiveRecord
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
-
-		$criteria->compare('id',$this->id);
-		$criteria->compare('title_ru',$this->title_ru,true);
-		$criteria->compare('title_ro',$this->title_ro,true);
+        $criteria->alias = 't';
+		$criteria->compare('t.id',$this->id);
+		$criteria->compare('t.g_id',$this->g_id);
+		$criteria->compare('t.title_ru',$this->title_ru,true);
+		$criteria->compare('t.title_ro',$this->title_ro,true);
 		$criteria->compare('text_ru',$this->text_ru,true);
 		$criteria->compare('text_ro',$this->text_ro,true);
-		$criteria->compare('hide',$this->hide);
+		$criteria->compare('t.hide',$this->hide);
+		$criteria->compare('groupArticle.title',$this->groupTitle);
+        $criteria->with = array('groupArticle');
+
+        $sort = new CSort();
+        $sort->attributes = array(
+            'groupTitle'=>array(
+                'asc'=>'article.title',
+                'desc'=>'article.title DESC',
+            ),
+        );
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -1,6 +1,8 @@
 <?php
 $this->menu=array(
 	array('label'=>'Список статей', 'url'=>array('index')),
+    array('label'=>'Список групп статей', 'url'=>array('groupArticle/index')),
+
 );
 ?>
 

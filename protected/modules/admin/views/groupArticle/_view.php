@@ -1,6 +1,6 @@
 <?php
-/* @var $this ArticleController */
-/* @var $data Article */
+/* @var $this GroupArticleController */
+/* @var $data GroupArticle */
 ?>
 
 <div class="view">
@@ -17,20 +17,8 @@
 	<?php echo CHtml::encode($data->title_ro); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('text_ru')); ?>:</b>
-	<?php echo CHtml::encode($data->text_ru); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('text_ro')); ?>:</b>
-	<?php echo CHtml::encode($data->text_ro); ?>
-	<br />
-
 	<b><?php echo CHtml::encode($data->getAttributeLabel('hide')); ?>:</b>
 	<?php echo CHtml::encode($data->hide); ?>
-	<br />
-
-    <b><?php echo CHtml::encode($data->getAttributeLabel('g_id')); ?>:</b>
-	<?php echo CHtml::encode($data->g_id); ?>
 	<br />
 
 

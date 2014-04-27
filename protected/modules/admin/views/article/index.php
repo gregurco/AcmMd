@@ -2,6 +2,7 @@
 
 $this->menu=array(
     array('label'=>'Создать статью', 'url'=>array('create')),
+    array('label'=>'Список групп статей', 'url'=>array('groupArticle/index')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -43,18 +44,6 @@ $('.search-form form').submit(function(){
             'value' => '$data->title_ro',
             'header' => 'Название (рум.)',
         ),
-        /*
-        array(
-            'name' => 'text_ru',
-            'value' => '$data->text_ru',
-            'header' => 'Текст (рус.)',
-        ),
-        array(
-            'name' => 'text_ro',
-            'value' => '$data->text_ro',
-            'header' => 'Текст (рум.)',
-        ),
-        */
         array(
             'name' => 'hide',
             'value' => '($data->hide)?"Да":"Нет"',
@@ -66,6 +55,10 @@ $('.search-form form').submit(function(){
                 0 => "Нет",
                 1 => "Да",
             ),
+        ),
+        array(
+            'name' => 'groupTitle',
+            'value' => '$data->groupArticle->title_'.Yii::app()->session["language"],
         ),
         array(
             'class'=>'CButtonColumn',

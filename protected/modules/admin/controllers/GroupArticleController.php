@@ -1,6 +1,6 @@
 <?php
 
-class ArticleController extends Controller
+class GroupArticleController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -15,6 +15,7 @@ class ArticleController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
+			'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
 
@@ -35,7 +36,7 @@ class ArticleController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array('delete'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -61,15 +62,16 @@ class ArticleController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Article;
+		$model=new GroupArticle;
+
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Article']))
+		if(isset($_POST['GroupArticle']))
 		{
-			$model->attributes=$_POST['Article'];
+			$model->attributes=$_POST['GroupArticle'];
 			if($model->save())
-				$this->redirect(array('article/'));
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('create',array(
@@ -89,11 +91,11 @@ class ArticleController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Article']))
+		if(isset($_POST['GroupArticle']))
 		{
-			$model->attributes=$_POST['Article'];
+			$model->attributes=$_POST['GroupArticle'];
 			if($model->save())
-				$this->redirect(array('article/'));
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('update',array(
@@ -112,34 +114,35 @@ class ArticleController extends Controller
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('article/'));
+			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
 
+
 	/**
-	 * Lists all models.
+	 * Manages all models.
 	 */
 	public function actionIndex()
 	{
-        $model=new Article('search');
-        $model->unsetAttributes();  // clear any default values
-        if(isset($_GET['Article']))
-            $model->attributes=$_GET['Article'];
+		$model=new GroupArticle('search');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['GroupArticle']))
+			$model->attributes=$_GET['GroupArticle'];
 
-        $this->render('index',array(
-            'model'=>$model,
-        ));
+		$this->render('index',array(
+			'model'=>$model,
+		));
 	}
 
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return Articles the loaded model
+	 * @return GroupArticle the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=Article::model()->findByPk($id);
+		$model=GroupArticle::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -147,11 +150,11 @@ class ArticleController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param Articles $model the model to be validated
+	 * @param GroupArticle $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='article-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='group-article-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
