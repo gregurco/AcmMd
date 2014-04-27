@@ -14,6 +14,7 @@
  * @property integer $status
  * @property string $compiler
  * @property string $file_name
+ * @property string $file_text
  */
 class Solution extends CActiveRecord
 {
@@ -35,7 +36,7 @@ class Solution extends CActiveRecord
 		return array(
 			array('time_send, status', 'numerical', 'integerOnly'=>true),
 			array('u_id, p_id, result', 'length', 'max'=>10),
-			array('tests, log_compile, compiler', 'safe'),
+			array('tests, log_compile, compiler, file_text', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, u_id, p_id, time_send, result, tests, log_compile, status, compiler', 'safe', 'on'=>'search'),
@@ -141,15 +142,19 @@ class Solution extends CActiveRecord
         $post->p_id = $p_id;
         $post->file_name = Solution::filename($compiler);
         $post->compiler = $compiler;
+        $post->file_text = iconv('windows-1251', 'utf-8', file_get_contents($_FILES[$file_name]['tmp_name']));
         $post->save();
 
-        $dir = realpath('.').'/files/private/received/'.date("Y.m.d");
-        @mkdir($dir);
-        $dir = $dir.'/'.$post->id.'/';
-        mkdir($dir);
+        $problem = Problem::model()->findByPk($p_id);
 
-        $uploaded = Yii::app()->file->set($file_name);
-        $uploaded->copy($dir . $post->file_name);
+        $processing = new Processing;
+        $processing->id = $post->id;
+        $processing->compiler = $compiler;
+        $processing->file_text = iconv('windows-1251', 'utf-8', file_get_contents($_FILES[$file_name]['tmp_name']));
+        $processing->p_id = $p_id;
+        $processing->limit_time = $problem->limit_time;
+        $processing->limit_memory = $problem->limit_memory;
+        $processing->save();
 
         return true;
     }
@@ -168,7 +173,7 @@ class Solution extends CActiveRecord
     public function getStatusName($num){
         switch($num){
             case 1:
-                return "Ожидание компиляции";
+                return "Ожидание";
                 break;
             case 2:
                 return "Компилирование";

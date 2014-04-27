@@ -47,3 +47,13 @@ $this->menu=array(
     'data'=>$model,
     'attributes'=>$tests,
 ));?>
+<br>
+<h3 style="text-align: center;">Код</h3>
+<?php
+$this->widget('application.extensions.jchili.JChiliHighlighter',array(
+    'lang'=>"html",
+    'code'=>$model->file_text,
+    'showLineNumbers'=>true,
+    'lang'=>$model->compiler,
+));
+?>
