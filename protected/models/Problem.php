@@ -120,13 +120,43 @@ class Problem extends CActiveRecord
 		$criteria->compare('limit_time',$this->limit_time);
 		$criteria->compare('limit_memory',$this->limit_memory);
 		$criteria->compare('examples',$this->examples,true);
-		$criteria->compare('hide',$this->hide);
+		$criteria->compare('hide', 0);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
 
+    public function searchAdmin()
+    {
+        // @todo Please modify the following code to remove attributes that should not be searched.
+        echo $this->name_ru;
+        $criteria=new CDbCriteria;
+
+        $criteria->compare('id',$this->id);
+
+        $criteria->compare('name_ru', $this->name_ru,true);
+        #$criteria->compare('name_ru', $this->name_ro,true, 'OR');
+
+        $criteria->compare('name_ro', $this->name_ro,true);
+        #$criteria->compare('name_ro', $this->name_ru,true, 'OR');
+
+        $criteria->compare('description_ru',$this->description_ru,true);
+        $criteria->compare('description_ro',$this->description_ro,true);
+        $criteria->compare('input_ru',$this->input_ru,true);
+        $criteria->compare('input_ro',$this->input_ro,true);
+        $criteria->compare('output_ru',$this->output_ru,true);
+        $criteria->compare('output_ro',$this->output_ro,true);
+        $criteria->compare('tests',$this->tests,true);
+        $criteria->compare('limit_time',$this->limit_time);
+        $criteria->compare('limit_memory',$this->limit_memory);
+        $criteria->compare('examples',$this->examples,true);
+        $criteria->compare('hide', $this->hide);
+
+        return new CActiveDataProvider($this, array(
+            'criteria'=>$criteria,
+        ));
+    }
 	/**
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!

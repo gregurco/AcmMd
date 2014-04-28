@@ -79,7 +79,7 @@ class ProblemController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=Problem::model()->findByPk($id);
+		$model=Problem::model()->findByAttributes(array('id' => $id, 'hide' => 0));
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
