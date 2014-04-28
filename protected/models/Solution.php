@@ -18,6 +18,9 @@
  */
 class Solution extends CActiveRecord
 {
+    public $problemName;
+    public $userLogin;
+
 	/**
 	 * @return string the associated database table name
 	 */
@@ -39,7 +42,7 @@ class Solution extends CActiveRecord
 			array('tests, log_compile, compiler, file_text', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, u_id, p_id, time_send, result, tests, log_compile, status, compiler', 'safe', 'on'=>'search'),
+			array('id, u_id, p_id, time_send, result, tests, log_compile, status, compiler, problemName, userLogin', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -100,6 +103,9 @@ class Solution extends CActiveRecord
 		$criteria->compare('log_compile',$this->log_compile,true);
 		$criteria->compare('status',$this->status);
         $criteria->compare('compiler',$this->compiler);
+        $criteria->compare('problem.name',$this->problemName);
+        $criteria->compare('user.login',$this->userLogin);
+        $criteria->with = array('problem', 'user');
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

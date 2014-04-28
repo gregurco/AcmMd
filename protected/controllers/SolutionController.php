@@ -43,7 +43,7 @@ class SolutionController extends Controller
 
     public function loadModel($id)
     {
-        $model=Solution::model()->findByPk($id);
+        $model=Solution::model()->findByAttributes(array('id' => $id, 'u_id' => Yii::app()->user->id));
         if($model===null)
             throw new CHttpException(404,'The requested page does not exist.');
         return $model;

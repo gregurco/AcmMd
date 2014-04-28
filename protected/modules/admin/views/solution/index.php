@@ -36,14 +36,21 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'u_id',
-		'p_id',
+        array(
+            'name' => 'userLogin',
+            'value' => '$data->user->login',
+            'header' => 'Пользователь',
+        ),
+        array(
+            'name' => 'problemName',
+            'value' => '$data->problem->name_'.Yii::app()->session["language"],
+            'header' => 'Задача',
+        ),
         array(
             'name' => 'time_send',
             'value' => 'date("j.m.Y",$data->time_send)',
             'header' => 'Время отправки',
         ),
-		'tests',
         array(
             'class'=>'CButtonColumn',
             'template'=>'{view}{delete}',
