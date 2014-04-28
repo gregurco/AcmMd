@@ -77,7 +77,7 @@ class ArticleController extends Controller
      */
     public function loadModel($id)
     {
-        $model=Article::model()->findByPk($id);
+        $model=Article::model()->findByAttributes(array('id' => $id, 'hide' => 0));
         if($model===null)
             throw new CHttpException(404,'The requested page does not exist.');
         return $model;
