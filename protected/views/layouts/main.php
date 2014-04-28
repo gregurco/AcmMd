@@ -89,7 +89,7 @@
                         array('label'=>Yii::t('menu', 'Problems'), 'url'=>array('/problem')),
                         array('label'=>Yii::t('menu', 'Olympiads'), 'url'=>array('')),
                         array('label'=>Yii::t('menu', 'Articles'), 'url'=>array('/article')),
-                        array('label'=>Yii::t('menu', 'Rating'), 'url'=>array('')),
+                        array('label'=>Yii::t('menu', 'Rating'), 'url'=>array('/top')),
                         array('label'=>Yii::t('menu', 'AdminCenter'), 'url'=>array('/admin'), 'visible'=>Yii::app()->user->userIsAdmin()),
                         array('label'=>Yii::t('menu', 'Enter'), 'url'=>array('/profile/login'), 'visible'=>Yii::app()->user->isGuest),
                         array('label'=>Yii::t('menu', 'Registration'), 'url'=>array('/profile/register'), 'visible'=>Yii::app()->user->isGuest),

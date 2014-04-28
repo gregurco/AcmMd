@@ -27,11 +27,11 @@ class ProfileController extends Controller
     {
         return array(
             array('allow',  // allow all users to perform 'index' and 'view' actions
-                'actions'=>array('register','login','captcha'),
+                'actions'=>array('register','login','captcha', 'view'),
                 'users'=>array('?'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions'=>array('logout','settings','index','changePassword','changeProfile'),
+                'actions'=>array('logout','settings','index','changePassword','changeProfile', 'view'),
                 'users'=>array('@'),
             ),
             array('deny',  // deny all users
@@ -70,17 +70,6 @@ class ProfileController extends Controller
             ));
         }
     }
-
-	public function actionError()
-	{
-		if($error=Yii::app()->errorHandler->error)
-		{
-			if(Yii::app()->request->isAjaxRequest)
-				echo $error['message'];
-			else
-				$this->render('error', $error);
-		}
-	}
 
 	/**
 	 * Displays the contact page
@@ -149,6 +138,14 @@ class ProfileController extends Controller
     {
         $model=$this->loadModel(Yii::app()->user->id);
         $this->render('index',array(
+            'model'=>$model,
+        ));
+    }
+
+    public function actionView($id)
+    {
+        $model=$this->loadModel($id);
+        $this->render('view',array(
             'model'=>$model,
         ));
     }
