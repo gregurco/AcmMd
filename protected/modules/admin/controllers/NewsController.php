@@ -110,6 +110,7 @@ class NewsController extends Controller
 	public function actionDelete($id)
 	{
 		$this->loadModel($id)->delete();
+        NewsComment::model()->deleteAllByAttributes(array('n_id'=>$id));
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))

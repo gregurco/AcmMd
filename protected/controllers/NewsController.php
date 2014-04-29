@@ -59,31 +59,32 @@ class NewsController extends Controller
 	 */
 	public function actionView($id)
 	{
+        $newsComment = new NewsComment('create');
+
+        if(isset($_POST['NewsComment']) && Yii::app()->config->get('COMMENT.ALLOW'))
+        {
+            if(Yii::app()->user->isGuest)
+                $newsComment->name=$_POST['NewsComment']['name'];
+            $newsComment->text=$_POST['text'];
+            $newsComment->verifyCode=$_POST['NewsComment']['verifyCode'];
+            $newsComment->n_id = $id;
+
+            if($newsComment->validate())
+            {
+                if($newsComment->save()){
+                    $newsComment->unsetAttributes();
+                    if(!Yii::app()->config->get('COMMENT.VALIDATE.ALLOW'))
+                        Yii::app()->user->setFlash('addComment',"Комментарий будет опубликован после проверки модератором.");
+
+                    else Yii::app()->user->setFlash('addComment',"Комментарий был успешно добавлен.");
+
+                }
+            }
+
+        }
 
      $model = $this->loadModel($id);
-     $newsComment = new NewsComment('create');
      $comments = NewsComment::model()->findAllByAttributes(array('n_id' => $id, 'hide' => 0));
-     if(isset($_POST['NewsComment']) && Yii::app()->config->get('COMMENT.ALLOW'))
-     {
-         if(Yii::app()->user->isGuest)
-             $newsComment->name=$_POST['NewsComment']['name'];
-         $newsComment->text=$_POST['text'];
-         $newsComment->verifyCode=$_POST['NewsComment']['verifyCode'];
-         $newsComment->n_id = $id;
-
-         if($newsComment->validate())
-         {
-             if($newsComment->save()){
-                 $newsComment->unsetAttributes();
-                 if(!Yii::app()->config->get('COMMENT.VALIDATE.ALLOW'))
-                    Yii::app()->user->setFlash('addComment',"Комментарий будет опубликован после проверки модератором.");
-
-                 else Yii::app()->user->setFlash('addComment',"Комментарий был успешно добавлен.");
-
-             }
-         }
-
-     }
 
      $newsComment->verifyCode = '';
 

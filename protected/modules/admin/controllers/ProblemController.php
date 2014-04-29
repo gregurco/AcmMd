@@ -131,6 +131,8 @@ class ProblemController extends Controller
     public function actionDelete($id)
     {
         $this->loadModel($id)->delete();
+        Solution::model()->deleteAllByAttributes(array('p_id'=>$id));
+
 
         // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
         if(!isset($_GET['ajax']))
