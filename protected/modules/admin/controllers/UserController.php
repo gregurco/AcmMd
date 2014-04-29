@@ -42,8 +42,14 @@ class UserController extends Controller
 	 */
 	public function actionView($id)
 	{
+        $score = Solution::userScore($id);
+        $finishedProblem = Solution::finishedProblem($id);
+        $unfinishedProblem = Solution::unFinishedProblem($id);
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
+            'finishedProblem'=>$finishedProblem,
+            'unfinishedProblem'=>$unfinishedProblem,
+            'score'=>$score,
 		));
 	}
 

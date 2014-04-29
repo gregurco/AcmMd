@@ -15,6 +15,20 @@ $this->menu=array(
         array(
             'label' => 'Время регистрации',
             'value' => CHtml::encode(date("Y-m-d H:i:s",$model->time_register)),
-        )
+        ),
+        array(
+            'type' => 'html',
+            'label' => 'Решенные задачи',
+            'value' => implode(', ', $finishedProblem)
+        ),
+        array(
+            'type' => 'html',
+            'label' => 'Начатые задачи',
+            'value' => implode(', ', $unfinishedProblem)
+        ),
+        array(
+            'label' => 'Баллы',
+            'value' => $score,
+        ),
     ),
 )); ?>

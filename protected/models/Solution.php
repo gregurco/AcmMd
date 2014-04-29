@@ -207,4 +207,53 @@ class Solution extends CActiveRecord
 
         return parent::afterFind();
     }
+
+    public static function finishedProblem($u_id, $link = true){
+        $criteria = new CDbCriteria;
+        $criteria->compare('u_id', $u_id);
+        $criteria->compare('result', 100);
+        $criteria->group = 'p_id';
+        $criteria->select = 'p_id';
+
+        $model = Solution::model()->findAll($criteria);
+
+        $result = array();
+
+        foreach($model as $one){
+            if ($link)
+                $result[] = CHtml::link($one->p_id, array('/problem/view', 'id' => $one->p_id));
+            else
+                $result[] = $one->p_id;
+        }
+        return $result;
+    }
+    public static function unFinishedProblem($u_id, $link = true){
+        $criteria = new CDbCriteria;
+        $criteria->compare('u_id', $u_id);
+        $criteria->group = 'p_id';
+        $criteria->select = 'p_id';
+        $criteria->addNotInCondition("p_id", Solution::finishedProblem($u_id, false));
+
+        $model = Solution::model()->findAll($criteria);
+
+        $result = array();
+
+        foreach($model as $one){
+            if ($link)
+                $result[] = CHtml::link($one->p_id, array('/problem/view', 'id' => $one->p_id));
+            else
+                $result[] = $one->p_id;
+        }
+        return $result;
+    }
+
+    public static function userScore($u_id)
+    {
+        $sql='SELECT SUM(c.rslt) score FROM (SELECT MAX(s.result) rslt FROM a_solution s WHERE s.u_id=:u_id group by s.p_id) c';
+        $rawData = Yii::app()->db->createCommand($sql);
+        $rawData->bindParam('u_id', $u_id, PDO::PARAM_INT);
+        $raw = $rawData->queryRow();
+        return $raw['score'];
+    }
+
 }

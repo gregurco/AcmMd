@@ -136,9 +136,16 @@ class ProfileController extends Controller
 
     public function actionIndex()
     {
+        $score = Solution::userScore(Yii::app()->user->id);
+        $finishedProblem = Solution::finishedProblem(Yii::app()->user->id);
+        $unfinishedProblem = Solution::unFinishedProblem(Yii::app()->user->id);
         $model=$this->loadModel(Yii::app()->user->id);
+
         $this->render('index',array(
             'model'=>$model,
+            'finishedProblem'=>$finishedProblem,
+            'unfinishedProblem'=>$unfinishedProblem,
+            'score'=>$score,
         ));
     }
 

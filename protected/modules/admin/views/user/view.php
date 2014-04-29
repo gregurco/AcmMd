@@ -24,6 +24,31 @@ $this->menu=array(
 		'login',
 		'name',
 		'surname',
-		'admin',
+        array(
+            'name' => 'admin',
+            'value' => ($model->admin)?"Да":"Нет",
+            'header' => 'Администратор',
+            'htmlOptions' => array(
+                'style' => 'text-align: center;',
+            ),
+            'filter' => array(
+                0 => "Нет",
+                1 => "Да",
+            ),
+        ),
+        array(
+            'type' => 'html',
+            'label' => 'Решенные задачи',
+            'value' => implode(', ', $finishedProblem)
+        ),
+        array(
+            'type' => 'html',
+            'label' => 'Начатые задачи',
+            'value' => implode(', ', $unfinishedProblem)
+        ),
+        array(
+            'label' => 'Баллы',
+            'value' => $score,
+        ),
 	),
 )); ?>
