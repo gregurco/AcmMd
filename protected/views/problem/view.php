@@ -38,8 +38,11 @@ $this->menu=array(
         <? endforeach; ?>
     </table>
 <? endif; ?>
-
-<? if (!Yii::app()->user->isGuest):?>
+<? if (!Yii::app()->config->get('SEND.SOLUTION')){
+        echo 'Отправка решений временно недоступна.';
+    }
+    else
+ if (!Yii::app()->user->isGuest):?>
     <form method="post" enctype="multipart/form-data">
         Файл: <input type="file" name="file"><br>
         Компилятор: <select name="compiler">

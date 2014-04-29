@@ -51,16 +51,21 @@ class ArticleController extends Controller
 
     public function actionIndex()
     {
-        $dataProvider=new CActiveDataProvider('GroupArticle', array(
-            'criteria'=>array(
-                'condition'=>'`hide`=0',
-            ),
-        )
-        );
+        if (!Yii::app()->config->get('ARTICLE.ALLOW')){
+            throw new CHttpException(404,'Статьи временно недоступны.');
+        }
+        else{
+            $dataProvider=new CActiveDataProvider('GroupArticle', array(
+                    'criteria'=>array(
+                        'condition'=>'`hide`=0',
+                    ),
+                )
+            );
 
-        $this->render('index',array(
-            'dataProvider'=>$dataProvider,
-        ));
+            $this->render('index',array(
+                'dataProvider'=>$dataProvider,
+            ));
+        }
     }
 
     /**

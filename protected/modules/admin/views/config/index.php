@@ -31,7 +31,7 @@ $('.search-form form').submit(function(){
         array(
             'name' => 'value',
             'value' => '($data->type=="boolean")? ($data->value)?"Да":"Нет" : $data->value',
-            'header' => 'Здачение',
+            'header' => 'Значение',
             'filter' => false,
         ),
         array(

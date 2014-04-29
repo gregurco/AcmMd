@@ -45,7 +45,7 @@ class ProblemController extends Controller
 	{
         $model = $this->loadModel($id);
 
-        if (isset($_POST['send'])){
+        if (isset($_POST['send']) && Yii::app()->config->get('SEND.SOLUTION')){
             Solution::createNewSolution('file', $model->id, $_POST['compiler']);
             $this->redirect(array('solution/index','pid'=>$model->id));
         }

@@ -25,21 +25,21 @@ class SolutionController extends Controller
 	{
         $model = $this->loadModel($id);
 
-        $tests = array();
-        if (!empty($model->tests)){
-            foreach ($model->tests as $key => $value){
-                $tests[] = array(
-                    'value' =>  $value[0].' ('.$value[1].' с.)',
-                    'label' => 'Тест '.$key,
-                );
+            $tests = array();
+            if (!empty($model->tests)){
+                foreach ($model->tests as $key => $value){
+                    $tests[] = array(
+                        'value' =>  $value[0].' ('.$value[1].' с.)',
+                        'label' => 'Тест '.$key,
+                    );
+                }
             }
-        }
 
-        $this->render('view', array(
-            'model'=>$model,
-            'tests'=>$tests,
-        ));
-	}
+            $this->render('view', array(
+                'model'=>$model,
+                'tests'=>$tests,
+            ));
+    }
 
     public function loadModel($id)
     {
