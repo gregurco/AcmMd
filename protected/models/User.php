@@ -45,7 +45,8 @@ class User extends CActiveRecord
             array('password, password_repeat', 'length', 'min'=>6, 'max'=>30, 'on' => 'register, changePassword'),
             // Пароль должен совпадать с повторным паролем для сценария регистрации
             array('password', 'compare', 'compareAttribute'=>'password_repeat', 'on' => 'register, changePassword'),
-
+            array('email','email','message'=>'E-mail не правильный','on'=>'register'),
+            array('email', 'unique','message'=>'Такой E-mail уже существует'),
             //CCaptcha
             array('verifyCode', 'captcha', 'allowEmpty'=>!CCaptcha::checkRequirements(), 'on' => 'register'),
             array('name', 'match', 'pattern'=>'/^([a-zA-ZА-Яа-я])+$/u', 'message'=>'Имя должно содержать только буквы русского или румынского алфавита'),
@@ -77,6 +78,7 @@ class User extends CActiveRecord
 			'login' => 'Логин',
 			'password' => 'Пароль',
             'password_repeat' => 'Повторите пароль',
+            'email' => 'Email',
 			'name' => 'Имя',
 			'surname' => 'Фамилия',
 			'admin' => 'Admin',
@@ -106,6 +108,7 @@ class User extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('login',$this->login,true);
 		$criteria->compare('password',$this->password,true);
+		$criteria->compare('email',$this->email,true);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('surname',$this->surname,true);
 		$criteria->compare('admin',$this->admin);

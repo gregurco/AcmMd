@@ -24,6 +24,7 @@ $this->menu=array(
 		'login',
 		'name',
 		'surname',
+		'email',
         array(
             'name' => 'admin',
             'value' => ($model->admin)?"Да":"Нет",

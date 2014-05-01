@@ -25,6 +25,11 @@ $this->menu=array(
             <?php echo CHtml::activeTextField($model,'surname'); ?>
         </div>
 
+        <div class="row">
+            <?php echo CHtml::activeLabel($model,'email'); ?>
+            <?php echo CHtml::activeTextField($model,'email'); ?>
+        </div>
+
         <div class="row submit">
             <?php echo CHtml::submitButton('Сохранить'); ?>
         </div>

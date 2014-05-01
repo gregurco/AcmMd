@@ -40,6 +40,12 @@
 		<?php echo $form->error($model,'name'); ?>
 	</div>
 
+    <div class="row">
+		<?php echo $form->labelEx($model,'Email'); ?>
+		<?php echo $form->textField($model,'email',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->error($model,'email'); ?>
+	</div>
+
 	<div class="row">
 		<?php echo $form->labelEx($model,'Фамилия'); ?>
 		<?php echo $form->textField($model,'surname',array('size'=>60,'maxlength'=>255)); ?>

@@ -12,6 +12,7 @@ $this->menu=array(
     'attributes'=>array(
         'name',
         'surname',
+        'email',
         array(
             'label' => 'Время регистрации',
             'value' => CHtml::encode(date("Y-m-d H:i:s",$model->time_register)),

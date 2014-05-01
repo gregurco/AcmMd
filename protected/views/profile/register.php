@@ -24,6 +24,11 @@
         </div>
 
         <div class="row">
+            <?php echo CHtml::activeLabel($model,'email'); ?>
+            <?php echo CHtml::activeTextField($model,'email') ?>
+        </div>
+
+        <div class="row">
             <?php echo CHtml::activeLabel($model,'name'); ?>
             <?php echo CHtml::activeTextField($model,'name') ?>
         </div>

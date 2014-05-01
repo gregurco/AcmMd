@@ -46,6 +46,11 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
             'header' => 'Логин',
         ),
         array(
+            'name' => 'email',
+            'value' => '$data->email',
+            'header' => 'Email',
+        ),
+        array(
             'name' => 'name',
             'value' => '$data->name',
             'header' => 'Имя',
