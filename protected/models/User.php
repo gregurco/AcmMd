@@ -49,8 +49,8 @@ class User extends CActiveRecord
             array('email', 'unique','message'=>'Такой E-mail уже существует'),
             //CCaptcha
             array('verifyCode', 'captcha', 'allowEmpty'=>!CCaptcha::checkRequirements(), 'on' => 'register'),
-            array('name', 'match', 'pattern'=>'/^([a-zA-ZА-Яа-я])+$/u', 'message'=>'Имя должно содержать только буквы русского или румынского алфавита'),
-            array('surname', 'match', 'pattern'=>'/^([a-zA-ZА-Яа-я])+$/u', 'message'=>'Фамилия должен содержать только буквы русского или румынского алфавита'),
+            array('name', 'match', 'pattern'=>'/^([a-zA-ZА-Яа-я])+$/u', 'message'=>'Имя должно содержать только буквы русского или английского алфавита'),
+            array('surname', 'match', 'pattern'=>'/^([a-zA-ZА-Яа-я])+$/u', 'message'=>'Фамилия должна содержать только буквы русского или английского алфавита'),
         );
     }
 

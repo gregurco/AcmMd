@@ -58,9 +58,8 @@ class ProfileController extends Controller
             if(isset($_POST['User']))
             {
                 $model->attributes=$_POST['User'];
-                    if($model->validate())
+                    if($model->save())
                     {
-                        $model->save();
                         Yii::app()->user->setFlash('register',"Вы можете авторизоваться как: $model->login.");
                     }
             }
