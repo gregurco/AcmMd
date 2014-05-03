@@ -50,6 +50,11 @@ class ProblemController extends Controller
             $this->redirect(array('solution/index','pid'=>$model->id));
         }
 
+        if (Yii::app()->config->get('SEND.SOLUTION'))
+            Yii::app()->user->setFlash('sendSolution',"Отправка решений временно недоступна.");
+        elseif (Yii::app()->user->isGuest)
+            Yii::app()->user->setFlash('sendSolution',"Для отправки решения, вы должны авторизироваться.");
+
 		$this->render('view',array(
 			'model'=> $model,
 		));

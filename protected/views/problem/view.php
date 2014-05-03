@@ -38,11 +38,13 @@ $this->menu=array(
         <? endforeach; ?>
     </table>
 <? endif; ?>
-<? if (!Yii::app()->config->get('SEND.SOLUTION')){
-        echo 'Отправка решений временно недоступна.';
-    }
-    else
- if (!Yii::app()->user->isGuest):?>
+
+
+<?php if(Yii::app()->user->hasFlash('sendSolution')): ?>
+    <div class="flash-error">
+        <?php echo Yii::app()->user->getFlash('sendSolution'); ?>
+    </div>
+<?php else: ?>
     <form method="post" enctype="multipart/form-data">
         Файл: <input type="file" name="file"><br>
         Компилятор: <select name="compiler">
@@ -51,6 +53,4 @@ $this->menu=array(
         </select><br>
         <input type="submit" value="Отправить" name="send">
     </form>
-<? else: ?>
-    Для отправки решения, вы должны авторизироваться.
 <? endif; ?>
