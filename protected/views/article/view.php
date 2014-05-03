@@ -6,4 +6,4 @@ $this->menu=array(
 
 <h1 align="center"><?php echo $model->title; ?></h1>
 
-<p align="left"><?php  $model->text; ?></p>
+<p align="left"><?php  echo $model->text; ?></p>
