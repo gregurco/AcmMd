@@ -22,7 +22,7 @@ class AdminModule extends CWebModule
 			// you may place customized code here
             if (!Yii::app()->user->userIsAdmin())
             {
-                Yii::app()->request->redirect(Yii::app()->defaultController);
+                Yii::app()->request->redirect('/'.Yii::app()->defaultController);
             }
 
 			return true;
