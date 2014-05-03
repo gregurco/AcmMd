@@ -61,6 +61,11 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
             'header' => 'Фамилия',
         ),
         array(
+            'name' => 'time_last_active',
+            'value' => '(date("Y-m-d H:i:s",$data->time_last_active))',
+            'header' => 'Последние действие',
+        ),
+        array(
             'name' => 'admin',
             'value' => '($data->admin)?"Да":"Нет"',
             'header' => 'Администратор',

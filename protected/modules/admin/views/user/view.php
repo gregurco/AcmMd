@@ -51,5 +51,9 @@ $this->menu=array(
             'label' => 'Баллы',
             'value' => $score,
         ),
+        array(
+            'label' => 'Последние действие',
+            'value' => CHtml::encode(date("Y-m-d H:i:s",$model->time_last_active))
+        ),
 	),
 )); ?>
