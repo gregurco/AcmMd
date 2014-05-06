@@ -1,5 +1,3 @@
 *.[oa]
 *.log
 *~
-assets/*
-protected/config/*
