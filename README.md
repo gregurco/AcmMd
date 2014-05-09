@@ -24,13 +24,13 @@
 
 ### Connect to git
     $ git config --global user.name "login"
-$ git config --global user.email "email"
+    $ git config --global user.email "email"
     $ ssh-keygen -t rsa -C "email"
-$ cat ~/.ssh/id_rsa.pub
+    $ cat ~/.ssh/id_rsa.pub
 Get a key and put it on ssh trusted keys
 
     $ cd /var/www/
-$ git clone git@github.com:Gregurco/AcmMd.git
+    $ git clone git@github.com:Gregurco/AcmMd.git
 
 ### Change etc/crontab
 \* *		* * *   root	/usr/local/bin/lockrun --lockfile=/tmp/cron.lockrun -- /var/www/AcmMd/protected/yiic cron
@@ -38,6 +38,6 @@ $ git clone git@github.com:Gregurco/AcmMd.git
 
 ### Final touches
     $ a2enmod rewrite
-$ chown www-data:www-data -R /var/www
+    $ chown www-data:www-data -R /var/www
 
 Редактируем настройки apache
