@@ -1,3 +1,5 @@
 *.[oa]
 *.log
 *~
+protected/runtime/*
+assets/*

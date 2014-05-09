@@ -21,13 +21,6 @@ return array(
 
 	'modules'=>array(
         'admin',
-		// uncomment the following to enable the Gii tool
-		'gii'=>array(
-			'class'=>'system.gii.GiiModule',
-			'password'=>'12345',
-			// If removed, Gii defaults to localhost only. Edit carefully to taste.
-			'ipFilters'=>array('*'),
-		),
 	),
 
 	// application components
@@ -53,24 +46,6 @@ return array(
 			),
             'showScriptName' => false,
 		),
-		'db'=>array(
-            'class'=>'system.db.CDbConnection',
-			'connectionString' => 'mysql:host=localhost;dbname=acmMd',
-			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => '12345',
-			'charset' => 'utf8',
-            'tablePrefix' => 'a_'
-		),
-        'db2'=>array(
-            'class'=>'system.db.CDbConnection',
-            'connectionString' => 'mysql:host=localhost;dbname=acmMdC',
-            'emulatePrepare' => true,
-            'username' => 'root',
-            'password' => '12345',
-            'charset' => 'utf8',
-            'tablePrefix' => 'c_'
-        ),
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',
