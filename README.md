@@ -13,16 +13,31 @@
 - Romanian
 
 ##  Instalation
-### FPC
-`apt-get install fpc`<br>
-Try to run `fpc` and if it doesn't work run:<br>
-`sudo ln -s /usr/lib/fpc/2.6.0/ppc386 /usr/local/bin/FPC`
-### GCC
-`sudo apt-get install gcc`
+### Install all necessary packages
+    $ apt-get install mc ssh apache2 mysql-client mysql-server php5 php5-mysql htop phpmyadmin git-core sudo gcc zip -y
 
-### SSH2 PHP extesion
-`apt-get install libssh2-php`
+### Install Lockrun for infinit cron
+    $ wget unixwiz.net/tools/lockrun.c
+    $ gcc lockrun.c -o lockrun
+    $ cp lockrun /usr/local/bin/
+    $ rm lockrun lockrun.c
 
-### Mod_Rewrite
-a2enmod rewrite
-/etc/init.d/apache2 restart
+### Connect to git
+    $ git config --global user.name "login"
+$ git config --global user.email "email"
+    $ ssh-keygen -t rsa -C "email"
+$ cat ~/.ssh/id_rsa.pub
+Get a key and put it on ssh trusted keys
+
+    $ cd /var/www/
+$ git clone git@github.com:Gregurco/AcmMd.git
+
+### Change etc/crontab
+\* *		* * *   root	/usr/local/bin/lockrun --lockfile=/tmp/cron.lockrun -- /var/www/AcmMd/protected/yiic cron
+*/10 *  * * *   root    cd /var/www/AcmMd && git pull
+
+### Final touches
+    $ a2enmod rewrite
+$ chown www-data:www-data -R /var/www
+
+Редактируем настройки apache
