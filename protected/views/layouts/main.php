@@ -27,33 +27,11 @@
             else if (field.value == '') field.value = field.defaultValue;
         }
 
-        function showClock() {
-            var obj = document.getElementById('clock');
-            var req;
-
-            if (window.XMLHttpRequest)	req = new XMLHttpRequest();
-            else if(window.ActiveXObject) {
-                try {
-                    req = new ActiveXObject('Msxml2.XMLHTTP');
-                } catch (e){}
-                try {
-                    req = new ActiveXObject('Microsoft.XMLHTTP');
-                } catch (e){}
-            }
-
-            if (req) {
-                req.onreadystatechange = function() {
-                    if (req.readyState == 4 && req.status == 200)
-                    { obj.innerHTML = req.responseText; }
-                };
-                req.open("POST", 'index.php', true);
-                req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                req.send('clock=1&ajax=1');
-            }
-            else alert("Браузер не поддерживает AJAX");
+        function ShowTime(){
+            now.setTime(now.getTime());
+            timer.innerHTML =now.toLocaleString()+"&nbsp;";
+            window.setTimeout('ShowTime()',1000);
         }
-
-        setInterval(showClock, 1000);
     </script>
 
     <!-- Рейтинг майл -->
@@ -90,7 +68,7 @@
                 </div>
 
                 <div id="search_box">
-                    <div id="clock" style="color: white;"><?=date('H:i:s')?></div>
+                    <div id="timer" style="color: white;"></div>
                 </div>
                 <!--
                 <div id="search_box">
@@ -107,15 +85,15 @@
                 <?php $this->widget('zii.widgets.CMenu',array(
                     'items'=>array(
                         array('label'=>Yii::t('menu', 'News'), 'url'=>array('/news')),
+                        array('label'=>Yii::t('menu', 'Enter'), 'url'=>array('/profile/login'), 'visible'=>Yii::app()->user->isGuest),
                         array('label'=>Yii::t('menu', 'PrivateOffice'), 'url'=>array('profile/index'),'visible'=>!Yii::app()->user->isGuest),
                         array('label'=>Yii::t('menu', 'Problems'), 'url'=>array('/problem')),
                         array('label'=>Yii::t('menu', 'Olympiads'), 'url'=>array('')),
                         array('label'=>Yii::t('menu', 'Articles'), 'url'=>array('/article')),
                         array('label'=>Yii::t('menu', 'Rating'), 'url'=>array('/top')),
                         array('label'=>Yii::t('menu', 'AdminCenter'), 'url'=>array('/admin'), 'visible'=>Yii::app()->user->userIsAdmin()),
-                        array('label'=>Yii::t('menu', 'Enter'), 'url'=>array('/profile/login'), 'visible'=>Yii::app()->user->isGuest),
-                        array('label'=>Yii::t('menu', 'Registration'), 'url'=>array('/profile/register'), 'visible'=>Yii::app()->user->isGuest),
                         array('label'=>Yii::t('menu', 'Exit').' ('.Yii::app()->user->name.')', 'url'=>array('/profile/logout'), 'visible'=>!Yii::app()->user->isGuest),
+                        array('label'=>Yii::t('menu', 'FAQ'), 'url'=>array('/site/FAQ')),
                     ),
                     'activateParents'=>true,
                     'id' => 'menu',

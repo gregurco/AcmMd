@@ -34,6 +34,8 @@
 		<?php echo $form->error($model,'rememberMe'); ?>
 	</div>
 
+    <?php echo CHtml::link('Зарегестрироваться','register')?>
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Войти'); ?>
 	</div>

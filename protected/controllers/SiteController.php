@@ -14,5 +14,18 @@ class SiteController extends Controller
                 $this->render('error', $error);
         }
     }
+    public function actionFAQ()
+    {
+        if(Yii::app()->session['language'] == 'ru')
+        {
+            $this->render('view_faq_ru');
+        }
+        elseif(Yii::app()->session['language'] == 'ro')
+        {
+            $this->render('view_faq_ro');
+        }
+
+
+    }
 
 }
