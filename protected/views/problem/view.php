@@ -50,6 +50,7 @@ $this->menu=array(
         Компилятор: <select name="compiler">
             <option value="FPC">Free Pascal 2.4.4</option>
             <option value="GCC">GCC 4.6.3</option>
+			<option value="Prolog">Prolog 5.10.4</option>
         </select><br>
         <input type="submit" value="Отправить" name="send">
     </form>

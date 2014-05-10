@@ -227,6 +227,7 @@ class Solution extends CActiveRecord
         }
         return $result;
     }
+	
     public static function unFinishedProblem($u_id, $link = true){
         $criteria = new CDbCriteria;
         $criteria->compare('u_id', $u_id);
