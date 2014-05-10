@@ -11,6 +11,7 @@
     <div style="margin-bottom: 10px; font-size: 11px; color: #666;">
         <?php echo CHtml::encode(Yii::t('interface', 'NCreated')); ?>:
         <?php echo CHtml::encode(date("j.m.Y",$data->create)); ?>
+         | Комментариев: <?php echo NewsComment::model()->countByAttributes(array('n_id'=>$data->id))?>
     </div>
 
     <div>

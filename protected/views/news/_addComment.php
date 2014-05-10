@@ -18,8 +18,6 @@
         )); ?>
     </div>
 
-
-
     <?php
     if(Yii::app()->user->isGuest)
     {
@@ -29,10 +27,6 @@
     }
 
     ?>
-
-
-
-
 
     <?php $form=$this->beginWidget('CActiveForm', array(
         'id'=>'user-form',
