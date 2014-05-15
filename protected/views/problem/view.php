@@ -49,8 +49,10 @@ $this->menu=array(
         Файл: <input type="file" name="file"><br>
         Компилятор: <select name="compiler">
             <option value="FPC">Free Pascal 2.4.4</option>
-            <option value="GCC">GCC 4.6.3</option>
+            <option value="GCC">GCC 4.7.2</option>
+			<option value="G++">G++ 4.7.2</option>
 			<option value="Prolog">Prolog 5.10.4</option>
+            <option value="Java">Java 1.6.0_27</option>
         </select><br>
         <input type="submit" value="Отправить" name="send">
     </form>

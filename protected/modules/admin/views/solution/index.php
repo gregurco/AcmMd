@@ -47,6 +47,16 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
             'header' => 'Задача',
         ),
         array(
+            'name' => 'compiler',
+            'value' => '$data->compiler',
+            'header' => 'Компилятор',
+        ),
+        array(
+            'name' => 'status',
+            'value' => '$data->getStatusName($data->status)',
+            'header' => 'Статус',
+        ),
+        array(
             'name' => 'time_send',
             'value' => 'date("j.m.Y",$data->time_send)',
             'header' => 'Время отправки',

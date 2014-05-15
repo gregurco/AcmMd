@@ -148,7 +148,11 @@ class Solution extends CActiveRecord
         $post->p_id = $p_id;
         $post->file_name = Solution::filename($compiler);
         $post->compiler = $compiler;
-        $post->file_text = iconv('windows-1251', 'utf-8', file_get_contents($_FILES[$file_name]['tmp_name']));
+        if (mb_detect_encoding(file_get_contents($_FILES[$file_name]['tmp_name']), 'UTF-8', true) === false) {
+            $post->file_text = iconv('windows-1251', 'utf-8', file_get_contents($_FILES[$file_name]['tmp_name']));
+        }else{
+            $post->file_text = file_get_contents($_FILES[$file_name]['tmp_name']);
+        }
         $post->save();
 
         $problem = Problem::model()->findByPk($p_id);
@@ -172,6 +176,15 @@ class Solution extends CActiveRecord
                 break;
             case 'GCC':
                 return '1.c';
+                break;
+            case 'Prolog':
+                return '1.pl';
+                break;
+            case 'G++':
+                return '1.cpp';
+                break;
+            case 'Java':
+                return 'Main.java';
                 break;
         }
     }

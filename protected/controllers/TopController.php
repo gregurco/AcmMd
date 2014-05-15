@@ -6,7 +6,6 @@ class TopController extends Controller
 
     public function actionIndex()
     {
-        //$model = new User('searchTop');
         $sql='SELECT a.*, b.login, b.name, b.surname FROM (SELECT c.u_id id,SUM(c.rslt) score FROM (SELECT s.u_id, s.p_id, MAX(s.result) rslt FROM a_solution s group by s.u_id, s.p_id) c GROUP BY c.u_id) a RIGHT JOIN (SELECT * from a_user) b ON a.id = b.id';
         $rawData = Yii::app()->db->createCommand($sql);
         $count = Yii::app()->db->createCommand('SELECT COUNT(*) FROM (' . $sql . ') as count_alias')->queryScalar(); //the count

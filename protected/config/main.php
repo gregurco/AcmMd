@@ -52,18 +52,17 @@ return array(
 		),
 		'log'=>array(
 			'class'=>'CLogRouter',
+			'enabled'=>YII_DEBUG,
 			'routes'=>array(
 				array(
 					'class'=>'CFileLogRoute',
 					'levels'=>'error, warning',
 				),
-				// uncomment the following to show log messages on web pages
-				/*
 				array(
-					'class'=>'CWebLogRoute',
-				),
-				*/
-			),
+					'class'=>'application.extensions.yii-debug-toolbar.YiiDebugToolbarRoute',
+					'ipFilters'=>array('127.0.0.1','95.65.77.178'),
+				),				
+			),		
 		),
         'clientScript' => array(
             'packages'=>array(
