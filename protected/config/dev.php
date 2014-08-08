@@ -55,8 +55,7 @@ return array(
                 '<language:(ru|ro)>/<controller:\w+>/<id:\d+>'=>'<controller>/view',
                 '<language:(ru|ro)>/<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
                 '<language:(ru|ro)>/<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
-            ),
-            'showScriptName' => false,
+            )
         ),
         'errorHandler'=>array(
             // use 'site/error' action to display errors
