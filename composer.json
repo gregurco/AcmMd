@@ -1,5 +1,13 @@
 {
+    "authors": [
+        {
+            "name": "Gregurco Vlad",
+            "email": "gregurco.vlad@gmail.com"
+        }
+    ],
     "require": {
-        "yiisoft/yii": "dev-master"
+        "yiisoft/yii": "dev-master",
+        "clevertech/yii-booster": "dev-master",
+        "malyshev/yii-debug-toolbar": "dev-master"
     }
 }

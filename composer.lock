@@ -4,8 +4,102 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f2511b9e80b3c058f3f67c672a7b5521",
+    "hash": "0398d03bc2f550bf12dfcd3aa4b68756",
     "packages": [
+        {
+            "name": "clevertech/yii-booster",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/clevertech/YiiBooster.git",
+                "reference": "1fec2bfcd53e2bd2796215d655cbbdd0ed7cbedb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/clevertech/YiiBooster/zipball/1fec2bfcd53e2bd2796215d655cbbdd0ed7cbedb",
+                "reference": "1fec2bfcd53e2bd2796215d655cbbdd0ed7cbedb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "ardem/yii-coding-standard": "dev-master",
+                "mayflower/php-codebrowser": "1.*",
+                "ncuesta/pinocchio": "dev-master",
+                "phploc/phploc": "2.*",
+                "phpunit/phpunit": "3.7.*",
+                "sebastian/phpcpd": "2.*",
+                "squizlabs/php_codesniffer": "1.*",
+                "yiisoft/yii": "1.1.14"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Saphronov Mark",
+                    "email": "hijarian@gmail.com",
+                    "homepage": "http://about.me/hijarian"
+                },
+                {
+                    "name": "Ruslan Fadeev"
+                },
+                {
+                    "name": "Amr Bedair",
+                    "email": "amr.bedair@gmail.com",
+                    "homepage": "http://amr.nefya.com"
+                },
+                {
+                    "name": "Antonio Ramirez Cobos",
+                    "email": "amigo.cobos@gmail.com",
+                    "homepage": "http://www.ramirezcobos.com"
+                }
+            ],
+            "description": "Widget toolkit for Yii framework",
+            "homepage": "http://yiibooster.clevertech.biz/",
+            "keywords": [
+                "bootstrap",
+                "yii"
+            ],
+            "time": "2014-07-25 14:29:53"
+        },
+        {
+            "name": "malyshev/yii-debug-toolbar",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/malyshev/yii-debug-toolbar.git",
+                "reference": "afcb27ca748a554089df1eeb0aaea6c537d9fccc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/malyshev/yii-debug-toolbar/zipball/afcb27ca748a554089df1eeb0aaea6c537d9fccc",
+                "reference": "afcb27ca748a554089df1eeb0aaea6c537d9fccc",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Sergey Malyshev",
+                    "email": "malyshev.php@gmail.com",
+                    "homepage": "http://www.yiiframework.com/extension/yii-debug-toolbar/"
+                }
+            ],
+            "description": "A configurable set of panels that display various debug information about the current request/response.",
+            "keywords": [
+                "debug",
+                "extension",
+                "yii"
+            ],
+            "time": "2014-07-05 12:25:16"
+        },
         {
             "name": "yiisoft/yii",
             "version": "dev-master",
@@ -99,7 +193,9 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "yiisoft/yii": 20
+        "yiisoft/yii": 20,
+        "clevertech/yii-booster": 20,
+        "malyshev/yii-debug-toolbar": 20
     },
     "prefer-stable": false,
     "platform": [
