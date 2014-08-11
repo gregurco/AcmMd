@@ -8,6 +8,7 @@
     "require": {
         "yiisoft/yii": "dev-master",
         "clevertech/yii-booster": "dev-master",
-        "malyshev/yii-debug-toolbar": "dev-master"
+        "malyshev/yii-debug-toolbar": "dev-master",
+        "idlesign/ist-yii-cfile": "dev-master"
     }
 }

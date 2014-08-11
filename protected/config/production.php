@@ -64,15 +64,15 @@ return array(
         ),
         'log'=>array(
             'class'=>'CLogRouter',
-            'enabled'=>YII_DEBUG,
+            'enabled'=> false,
             'routes'=>array(
                 array(
                     'class'=>'CFileLogRoute',
                     'levels'=>'error, warning',
                 ),
                 array(
-                    'class'=>'application.extensions.yii-debug-toolbar.YiiDebugToolbarRoute',
-                    'ipFilters'=>array('127.0.0.1','95.65.77.178'),
+                    'class'=>'application.vendor.malyshev.yii-debug-toolbar.YiiDebugToolbarRoute',
+                    'ipFilters'=>array('127.0.0.1'),
                 ),
             ),
         ),

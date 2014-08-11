@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0398d03bc2f550bf12dfcd3aa4b68756",
+    "hash": "ba29c07cc85868ca46a38f75fe714deb",
     "packages": [
         {
             "name": "clevertech/yii-booster",
@@ -67,6 +67,48 @@
             "time": "2014-07-25 14:29:53"
         },
         {
+            "name": "idlesign/ist-yii-cfile",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/idlesign/ist-yii-cfile.git",
+                "reference": "fd689c3cfc70f2dfe8a4972135dcd5d4f15dd9cf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/idlesign/ist-yii-cfile/zipball/fd689c3cfc70f2dfe8a4972135dcd5d4f15dd9cf",
+                "reference": "fd689c3cfc70f2dfe8a4972135dcd5d4f15dd9cf",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.1.0"
+            },
+            "suggest": {
+                "yiisoft/yii": "CFile can function as Yii extension"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Igor 'idle sign' Starikov",
+                    "email": "idlesign@yandex.ru",
+                    "homepage": "http://idlesign.ya.ru",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "CFile provides means to manipulate filesystem objects both from Yii and standalone",
+            "homepage": "https://github.com/idlesign/ist-yii-cfile",
+            "keywords": [
+                "files",
+                "filesystem",
+                "yii"
+            ],
+            "time": "2014-04-29 12:42:28"
+        },
+        {
             "name": "malyshev/yii-debug-toolbar",
             "version": "dev-master",
             "source": {
@@ -106,12 +148,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii.git",
-                "reference": "28f8e98757f4faa560e0801a0b8057459ed9cc6e"
+                "reference": "041812f0c4069d705318849f2e4f47db7cfcda66"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii/zipball/28f8e98757f4faa560e0801a0b8057459ed9cc6e",
-                "reference": "28f8e98757f4faa560e0801a0b8057459ed9cc6e",
+                "url": "https://api.github.com/repos/yiisoft/yii/zipball/041812f0c4069d705318849f2e4f47db7cfcda66",
+                "reference": "041812f0c4069d705318849f2e4f47db7cfcda66",
                 "shasum": ""
             },
             "require": {
@@ -182,7 +224,7 @@
                 "framework",
                 "yii"
             ],
-            "time": "2014-07-30 04:04:09"
+            "time": "2014-08-11 15:46:52"
         }
     ],
     "packages-dev": [
@@ -195,7 +237,8 @@
     "stability-flags": {
         "yiisoft/yii": 20,
         "clevertech/yii-booster": 20,
-        "malyshev/yii-debug-toolbar": 20
+        "malyshev/yii-debug-toolbar": 20,
+        "idlesign/ist-yii-cfile": 20
     },
     "prefer-stable": false,
     "platform": [
