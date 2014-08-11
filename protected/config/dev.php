@@ -24,10 +24,11 @@ return array(
             'connectionString' => 'mysql:host=localhost;dbname=acmMd',
             'emulatePrepare' => true,
             'username' => 'root',
-            'password' => '12345',
+            'password' => '',
             'charset' => 'utf8',
             'tablePrefix' => 'a_'
         ),
+        /*
         'db2'=>array(
             'class'=>'system.db.CDbConnection',
             'connectionString' => 'mysql:host=localhost;dbname=acmMdC',
@@ -37,6 +38,7 @@ return array(
             'charset' => 'utf8',
             'tablePrefix' => 'c_'
         ),
+        */
         'request'=>array(
             'class'=>'DLanguageHttpRequest',
         ),
@@ -93,6 +95,9 @@ return array(
         'config'=>array(
             'class' => 'DConfig',
             'cache'=>3600,
+        ),
+        'messages' => array(
+            'forceTranslation' => true
         ),
     ),
 

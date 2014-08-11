@@ -95,6 +95,9 @@ return array(
             'class' => 'DConfig',
             'cache'=>3600,
         ),
+        'messages' => array(
+            'forceTranslation' => true
+        ),
     ),
 
     // application-level parameters that can be accessed
