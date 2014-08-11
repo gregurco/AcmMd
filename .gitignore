@@ -4,5 +4,4 @@
 protected/runtime/*
 assets/*
 composer.phar
-vendor/*
-!vendor/.htaccess
+protected/vendor/*
