@@ -5,7 +5,7 @@ return array(
     'defaultController' => 'news',
     'timeZone' => 'Europe/Chisinau',
     // preloading 'log' component
-    'preload'=>array('log', 'config'),
+    'preload'=>array('log', 'config', 'booster'),
 
     // autoloading model and component classes
     'import'=>array(
@@ -24,10 +24,11 @@ return array(
             'connectionString' => 'mysql:host=localhost;dbname=acmMd',
             'emulatePrepare' => true,
             'username' => 'root',
-            'password' => '12345',
+            'password' => '',
             'charset' => 'utf8',
             'tablePrefix' => 'a_'
         ),
+        /*
         'db2'=>array(
             'class'=>'system.db.CDbConnection',
             'connectionString' => 'mysql:host=localhost;dbname=acmMdC',
@@ -37,6 +38,7 @@ return array(
             'charset' => 'utf8',
             'tablePrefix' => 'c_'
         ),
+        */
         'request'=>array(
             'class'=>'DLanguageHttpRequest',
         ),
@@ -97,6 +99,10 @@ return array(
         ),
         'messages' => array(
             'forceTranslation' => true
+        ),
+
+        'booster' => array(
+            'class' => 'application.vendor.clevertech.yii-booster.src.components.Booster',
         ),
     ),
 

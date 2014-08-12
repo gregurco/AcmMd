@@ -8,36 +8,38 @@
 <h1>Авторизация</h1>
 
 <div class="form">
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'login-form',
-	'enableClientValidation'=>true,
-	'clientOptions'=>array(
-		'validateOnSubmit'=>true,
-	),
-)); ?>
+    <?php
+    $form = $this->beginWidget(
+        'booster.widgets.TbActiveForm',
+        array(
+            'id'=>'login-form',
+            'htmlOptions' => array('class' => 'well'), // for inset effect
+        )
+    );
+    ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'username'); ?>
-		<?php echo $form->textField($model,'username'); ?>
-		<?php echo $form->error($model,'username'); ?>
+		<?php echo $form->textFieldGroup($model,'username'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'password'); ?>
-		<?php echo $form->passwordField($model,'password'); ?>
-		<?php echo $form->error($model,'password'); ?>
+		<?php echo $form->passwordFieldGroup($model,'password'); ?>
 	</div>
 
 	<div class="row rememberMe">
-		<?php echo $form->checkBox($model,'rememberMe'); ?>
-		<?php echo $form->label($model,'Запомнить'); ?>
+		<?php echo $form->checkboxGroup($model,'rememberMe'); ?>
 		<?php echo $form->error($model,'rememberMe'); ?>
 	</div>
 
     <?php echo CHtml::link('Зарегестрироваться','register')?>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton('Войти'); ?>
+        <?php
+        $this->widget(
+            'booster.widgets.TbButton',
+            array('buttonType' => 'submit', 'label' => 'Войти')
+        );
+        ?>
 	</div>
 
 <?php $this->endWidget(); ?>

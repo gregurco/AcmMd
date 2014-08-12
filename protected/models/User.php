@@ -136,7 +136,12 @@ class User extends CActiveRecord
             if ($this->isNewRecord || $this->getScenario()=='changePassword' || $this->getScenario()=='changePasswordAdmin'){
                 $this->password = md5($this->password);
             }
-            $this->time_register = time();
+
+            if ($this->isNewRecord){
+                $this->time_register = time();
+                $this->time_last_active = time();
+            }
+
             return true;
         }
         return false;

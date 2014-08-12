@@ -1,52 +1,44 @@
+<h1 style="text-align: center;">Регистрация</h1>
 <div class="form" align="center">
     <?php if(Yii::app()->user->hasFlash('register')): ?>
         <div class="flash-success">
             <?php echo Yii::app()->user->getFlash('register'); ?>
         </div>
     <?php else: ?>
-        <?php echo CHtml::beginForm(); ?>
-
-        <?php echo CHtml::errorSummary($model)?>
+        <?php
+        $form = $this->beginWidget(
+            'booster.widgets.TbActiveForm',
+            array(
+                'id'=>'login-form',
+                'htmlOptions' => array('class' => 'well'), // for inset effect
+            )
+        );
+        ?>
 
         <div class="row">
-            <?php echo CHtml::activeLabel($model,'login')?><b class="errorMessage">*</b>
-            <?php echo CHtml::activeTextField($model,'login'); ?>
+            <?php echo $form->textFieldGroup($model,'login'); ?>
         </div>
 
         <div class="row">
-            <?php echo CHtml::activeLabel($model,'password'); ?><b class="errorMessage">*</b>
-            <?php echo CHtml::activePasswordField($model,'password'); ?>
+            <?php echo $form->passwordFieldGroup($model,'password'); ?>
         </div>
 
         <div class="row">
-            <?php echo CHtml::activeLabel($model,'password_repeat'); ?><b class="errorMessage">*</b>
-            <?php echo CHtml::activePasswordField($model,'password_repeat'); ?>
+            <?php echo $form->passwordFieldGroup($model,'password_repeat'); ?>
         </div>
 
         <div class="row">
-            <?php echo CHtml::activeLabel($model,'email'); ?>
-            <?php echo CHtml::activeTextField($model,'email') ?>
+            <?php echo $form->textFieldGroup($model,'email'); ?>
         </div>
 
         <div class="row">
-            <?php echo CHtml::activeLabel($model,'name'); ?>
-            <?php echo CHtml::activeTextField($model,'name') ?>
+            <?php echo $form->textFieldGroup($model,'name'); ?>
         </div>
 
         <div class="row">
-            <?php echo CHtml::activeLabel($model,'surname'); ?>
-            <?php echo CHtml::activeTextField($model,'surname') ?>
+            <?php echo $form->textFieldGroup($model,'surname'); ?>
         </div>
 
-
-        <?php $form=$this->beginWidget('CActiveForm', array(
-            'id'=>'user-form',
-            // Please note: When you enable ajax validation, make sure the corresponding
-            // controller action is handling ajax validation correctly.
-            // There is a call to performAjaxValidation() commented in generated controller code.
-            // See class documentation of CActiveForm for details on this.
-            'enableAjaxValidation'=>false,
-        )); ?>
         <?php if(CCaptcha::checkRequirements()): ?>
             <div class="row">
                 <?php echo $form->labelEx($model,'verifyCode'); ?>
@@ -59,10 +51,14 @@
         <?php endif; ?>
 
         <div class="row submit">
-            <?php echo CHtml::submitButton('Зарегистрироваться'); ?>
+            <?php
+            $this->widget(
+                'booster.widgets.TbButton',
+                array('buttonType' => 'submit', 'label' => 'Зарегистрироваться')
+            );
+            ?>
         </div>
 
-        <?php echo CHtml::endForm(); ?>
         <?php $this->endWidget(); ?>
     <?php endif; ?>
 </div>

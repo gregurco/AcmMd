@@ -5,7 +5,7 @@ return array(
     'defaultController' => 'news',
     'timeZone' => 'Europe/Chisinau',
     // preloading 'log' component
-    'preload'=>array('log', 'config'),
+    'preload'=>array('log', 'config', 'booster'),
 
     // autoloading model and component classes
     'import'=>array(
@@ -97,6 +97,9 @@ return array(
         ),
         'messages' => array(
             'forceTranslation' => true
+        ),
+        'booster' => array(
+            'class' => 'application.vendor.clevertech.yii-booster.src.components.Booster',
         ),
     ),
 
