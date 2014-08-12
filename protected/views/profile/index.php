@@ -1,6 +1,7 @@
 <?php
 /* @var $this SiteController */
 $this->menu=array(
+    array('label'=>'Личный кабинет', 'url'=>array('profile/index')),
     array('label'=>'Изменить пароль', 'url'=>array('profile/changePassword')),
     array('label'=>'Редактирование профиля', 'url'=>array('profile/changeProfile')),
 );
