@@ -5,34 +5,43 @@ $this->menu=array(
     array('label'=>'Редактирование профиля', 'url'=>array('profile/changeProfile')),
 );
 ?>
-
+<h1 style="text-align: center;">Редактирование профиля</h1>
 <div class="form" align="center">
     <?php if(Yii::app()->user->hasFlash('profile')): ?>
         <div class="flash-success">
             <?php echo Yii::app()->user->getFlash('profile'); ?>
         </div>
     <? else: ?>
-        <?php echo CHtml::beginForm(); ?>
-        <?php echo CHtml::errorSummary($model)?>
+        <?php
+        $form = $this->beginWidget(
+            'booster.widgets.TbActiveForm',
+            array(
+                'id'=>'login-form',
+                'htmlOptions' => array('class' => 'well'), // for inset effect
+            )
+        );
+        ?>
 
         <div class="row">
-            <?php echo CHtml::activeLabel($model,'name'); ?>
-            <?php echo CHtml::activeTextField($model,'name'); ?>
+            <?php echo $form->textFieldGroup($model,'name'); ?>
         </div>
 
         <div class="row">
-            <?php echo CHtml::activeLabel($model,'surname'); ?>
-            <?php echo CHtml::activeTextField($model,'surname'); ?>
+            <?php echo $form->textFieldGroup($model,'surname'); ?>
         </div>
 
         <div class="row">
-            <?php echo CHtml::activeLabel($model,'email'); ?>
-            <?php echo CHtml::activeTextField($model,'email'); ?>
+            <?php echo $form->textFieldGroup($model,'email'); ?>
         </div>
 
         <div class="row submit">
-            <?php echo CHtml::submitButton('Сохранить'); ?>
+            <?php
+            $this->widget(
+                'booster.widgets.TbButton',
+                array('buttonType' => 'submit', 'label' => 'Сохранить')
+            );
+            ?>
         </div>
-        <?php echo CHtml::endForm(); ?>
+        <?php $this->endWidget(); ?>
     <? endif; ?>
 </div>
