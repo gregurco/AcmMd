@@ -89,7 +89,7 @@ return array(
             ),
         ),
         'file'=>array(
-            'class'=>'application.extensions.file.CFile',
+            'class'=>'application.vendor.idlesign.ist-yii-cfile.CFile',
         ),
         'config'=>array(
             'class' => 'DConfig',
