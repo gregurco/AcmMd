@@ -9,10 +9,14 @@ $this->menu=array(
 <h1 style="text-align: center;">Изменить пароль</h1>
 <div class="form" align="center">
     <?php if(Yii::app()->user->hasFlash('password')): ?>
-        <div class="flash-success">
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
             <?php echo Yii::app()->user->getFlash('password'); ?>
         </div>
-    <? else: ?>
+    <? endif; ?>
+
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
         <?php
         $form = $this->beginWidget(
             'booster.widgets.TbActiveForm',
@@ -41,5 +45,6 @@ $this->menu=array(
                 ?>
             </div>
         <?php $this->endWidget(); ?>
-    <? endif; ?>
+    </div>
+    <div class="col-md-2"></div>
 </div>
