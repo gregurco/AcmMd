@@ -1,4 +1,4 @@
-<h3 class="text-center">FAQ</h3>
+<h1 class="text-center">FAQ</h1>
 
 <p><b>- Ce putem gasi pe acest site?</b></p>
 <p>- Acest site contine o arhiva de probleme de olimpiada cu sistemul de testare incorporat.</p>
