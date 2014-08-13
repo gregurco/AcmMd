@@ -1,7 +1,7 @@
 <?php
 $this->layout='//layouts/column1';
 ?>
-<h2 align="center">Статьи</h2>
+<h2 class="text-center">Статьи</h2>
 <ul class="clearfix port-det port-thumb">
 <?php $this->widget('zii.widgets.CListView', array(
     'dataProvider'=>$dataProvider,

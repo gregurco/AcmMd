@@ -8,7 +8,7 @@ $this->menu=array(
     array('label'=>'Описание задачи', 'url'=>array('problem/view', 'id'=>$model->p_id)),
 );
 ?>
-<h1 style="text-align: center;">"<?php echo $model->problem->name; ?>"</h1>
+<h1 class="text-center">"<?php echo $model->problem->name; ?>"</h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
     'data'=>$model,
@@ -42,13 +42,13 @@ $this->menu=array(
     ),
 ));?>
 <br>
-<h3 style="text-align: center;">Тесты</h3>
+<h3 class="text-center">Тесты</h3>
 <?php $this->widget('zii.widgets.CDetailView', array(
     'data'=>$model,
     'attributes'=>$tests,
 ));?>
 <br>
-<h3 style="text-align: center;">Код</h3>
+<h3 class="text-center">Код</h3>
 <?php
 $this->widget('application.extensions.jchili.JChiliHighlighter',array(
     'lang'=>"html",

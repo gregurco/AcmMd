@@ -11,7 +11,7 @@ $this->menu=array(
 );
 ?>
 
-<h1 style="text-align: center;">"<?php echo $model->name; ?>"</h1>
+<h1 class="text-center">"<?php echo $model->name; ?>"</h1>
 
 <h3><?=Yii::t('interface', 'Description')?>:</h3>
 <?php echo $model->description; ?>

@@ -9,7 +9,7 @@ $this->menu=array(
 );
 ?>
 
-<h1 style="text-align: center;">Отправленные решения</h1>
+<h1 class="text-center">Отправленные решения</h1>
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
     'id'=>'solution-grid',

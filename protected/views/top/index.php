@@ -5,7 +5,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Общий рейтинг</h1>
+<h1 class="text-center">Общий рейтинг</h1>
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
     'id'=>'top-grid',

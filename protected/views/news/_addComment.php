@@ -4,7 +4,7 @@
     </div>
 <? endif; ?>
 
-<div class="form" align="center">
+<div class="form text-center">
     <?php echo CHtml::beginForm(); ?>
     <?php echo CHtml::errorSummary($newsComment)?>
 
