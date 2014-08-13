@@ -1,7 +1,8 @@
-<h1 style="text-align: center;">Регистрация</h1>
-<div class="form" align="center">
+<h1 class="text-center">Регистрация</h1>
+
+<div class="form text-center">
     <?php if(Yii::app()->user->hasFlash('register')): ?>
-        <div class="flash-success">
+        <div class="alert alert-success" role="alert">
             <?php echo Yii::app()->user->getFlash('register'); ?>
         </div>
     <?php else: ?>

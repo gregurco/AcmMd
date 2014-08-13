@@ -1,4 +1,4 @@
-<h1 align="center">Информация о пользователе: <?php echo $model->login;?></h1>
+<h1 class="text-center">Информация о пользователе: <?php echo $model->login;?></h1>
 <?php $this->widget('zii.widgets.CDetailView', array(
     'data'=>$model,
     'attributes'=>array(

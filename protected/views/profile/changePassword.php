@@ -6,7 +6,7 @@ $this->menu=array(
     array('label'=>'Редактирование профиля', 'url'=>array('profile/changeProfile')),
 );
 ?>
-<h1 style="text-align: center;">Изменить пароль</h1>
+<h1 class="text-center">Изменить пароль</h1>
 <div class="form" align="center">
     <?php if(Yii::app()->user->hasFlash('password')): ?>
         <div class="alert alert-success alert-dismissible" role="alert">

@@ -4,7 +4,7 @@
 /* @var $form CActiveForm  */
 
 ?>
-<h1 style="text-align: center;">Авторизация</h1>
+<h1 class="text-center">Авторизация</h1>
 
 <div class="form" style="text-align: center;">
     <div class="col-md-2"></div>

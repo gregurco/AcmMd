@@ -6,7 +6,7 @@ $this->menu=array(
     array('label'=>'Редактирование профиля', 'url'=>array('profile/changeProfile')),
 );
 ?>
-<h1 style="text-align: center;">Редактирование профиля</h1>
+<h1 class="text-center">Редактирование профиля</h1>
 <div class="form" align="center">
     <?php if(Yii::app()->user->hasFlash('profile')): ?>
         <div class="alert alert-success alert-dismissible" role="alert">
