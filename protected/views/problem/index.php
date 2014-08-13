@@ -23,7 +23,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Список задач</h1>
+<h1 class="text-center">Список задач</h1>
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'problem-grid',
