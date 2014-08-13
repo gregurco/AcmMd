@@ -117,4 +117,8 @@ return array(
         ),
         'defaultLanguage'=>'ru',
     ),
+
+    'aliases' => array(
+        'xupload' => 'application.vendor.asgaroth.xupload'
+    ),
 );

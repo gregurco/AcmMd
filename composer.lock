@@ -4,8 +4,27 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ba29c07cc85868ca46a38f75fe714deb",
+    "hash": "7a4a3068c754e1c993a3ed69429e8877",
     "packages": [
+        {
+            "name": "asgaroth/xupload",
+            "version": "v0.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Asgaroth/xupload.git",
+                "reference": "14ff9fb97e27c3e02fc1fe84c54beb9e56c3a008"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Asgaroth/xupload/zipball/14ff9fb97e27c3e02fc1fe84c54beb9e56c3a008",
+                "reference": "14ff9fb97e27c3e02fc1fe84c54beb9e56c3a008",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "jQuery file upload extension for Yii, allows your users to easily upload files to the server",
+            "time": "2012-11-10 23:57:36"
+        },
         {
             "name": "clevertech/yii-booster",
             "version": "dev-master",

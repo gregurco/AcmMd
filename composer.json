@@ -5,10 +5,14 @@
             "email": "gregurco.vlad@gmail.com"
         }
     ],
+    "config": {
+        "vendor-dir": "protected/vendor"
+    },
     "require": {
         "yiisoft/yii": "dev-master",
         "clevertech/yii-booster": "dev-master",
         "malyshev/yii-debug-toolbar": "dev-master",
-        "idlesign/ist-yii-cfile": "dev-master"
+        "idlesign/ist-yii-cfile": "dev-master",
+        "asgaroth/xupload": "v0.5.0"
     }
 }
